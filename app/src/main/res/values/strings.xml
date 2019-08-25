@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">Proyecto</string>
+    <string name="app_name">WowGuau</string>
+    <string name="user">Usuario</string>
+    <string name="password">Passw</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="registro">Registro</string>
+    <string name="registro_inicio"><u>Registrarse</u></string>
+    <string name="nombre_apellido">Nombres y apellidos</string>
+    <string name="email">Email</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="conf_contrasena">Conirmar contraseña</string>
+    <string name="movil">Móvil</string>
+    <string name="direccion">Dirección</string>
+    <string name="piso_oficina_apto">Piso/Oficina/Apto</string>
+    <string name="term_y_cond_title">Términos y Condiciones</string>
+    <string name="term_y_cond">Al continuar, también aceptas los términos del servicio y la política de privacidad de WowGuau.</string>
+    <string name="con_term_y_cond"><u>Conocer Términos y Condiciones</u></string>
+    <string name="ecommerce">Ecommerce</string>
+    <string name="home">Home</string>
 </resources>
