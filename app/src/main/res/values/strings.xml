@@ -17,4 +17,8 @@
     <string name="con_term_y_cond"><u>Conocer Términos y Condiciones</u></string>
     <string name="ecommerce">Ecommerce</string>
     <string name="home">Home</string>
+    <string name="certificado_paseador">Agregar certificado de Paseador</string>
+    <string name="mens_subir_archivo">Por favor suba el archivo del certificado</string>
+    <string name="subir_archivo">Subir Archivo</string>
+    <string name="calendario_del_mes">Calendario del mes</string>
 </resources>

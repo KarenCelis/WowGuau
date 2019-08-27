@@ -58,7 +58,7 @@
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
-                app:srcCompat="@drawable/icono_dueño" />
+                app:srcCompat="@drawable/icono_dueno" />
 
             <ImageButton
                 android:id="@+id/Boton_Icono_Paseador"

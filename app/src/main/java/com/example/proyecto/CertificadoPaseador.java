@@ -7,18 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class TipoUsuario extends AppCompatActivity {
+public class CertificadoPaseador extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tipo_usuario);
+        super.onCreate ( savedInstanceState );
+        setContentView ( R.layout.activity_certificado_paseador );
 
-        final ImageButton boton = (ImageButton) findViewById ( R.id.Boton_Icono_Paseador );
+        final ImageButton boton = (ImageButton) findViewById ( R.id.Boton_Siguiente_Cert_Paseador );
+
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent ( v.getContext(), CertificadoPaseador.class);
+                Intent intent = new Intent ( v.getContext(), HomePaseador.class);
                 startActivityForResult(intent, 0);
             }
         });
