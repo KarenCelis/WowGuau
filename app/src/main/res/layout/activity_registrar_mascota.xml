@@ -4,170 +4,164 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".RegistrarMascota">
 
-    <ImageView
-        android:id="@+id/Img_IconoPerro"
-        android:layout_width="217dp"
-        android:layout_height="206dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/colorVerdeFondoPantallas"
-        android:foregroundTint="@color/colorVerdeFondoPantallas"
-        android:scaleType="fitXY"
-        android:tint="@color/colorVerdeFondoPantallas"
-        app:layout_constraintBottom_toTopOf="@+id/divider2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icono_perro" />
-
-    <Spinner
-        android:id="@+id/spinner_razas"
-        android:layout_width="295dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.979"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="173dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:text="Seleccione la raza:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.211"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="301dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nombre           "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="296dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="48dp"
-        android:text="Seleccione el tamaño de su mascota"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
-
-    <Spinner
-        android:id="@+id/spinner_tamanoMascota"
-        android:layout_width="310dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="16dp"
-        android:buttonTint="@color/colorVerdeFondoPantallas"
-        android:text="Si         "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:buttonTint="@color/colorVerdeFondoPantallas"
-        android:text="No"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
-        app:layout_constraintStart_toEndOf="@+id/checkBox2"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="181dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:text="¿Está esterilizado/a?"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_razas" />
-
-    <Spinner
-        android:id="@+id/spinner_vacunas"
-        android:layout_width="312dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:text="¿Que vacunas tiene?"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_tamanoMascota" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="395dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorVerdeFondoPantallas"
-        android:backgroundTint="@color/colorVerdeFondoPantallas"
-        android:backgroundTintMode="add"
-        android:foregroundTint="@color/colorVerdeFondoPantallas"
-        android:foregroundTintMode="add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Img_IconoPerro" />
+            <ImageView
+                android:id="@+id/Img_IconoPerro"
+                android:layout_width="217dp"
+                android:layout_height="206dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/colorVerdeFondoPantallas"
+                android:foregroundTint="@color/colorVerdeFondoPantallas"
+                android:scaleType="fitXY"
+                android:tint="@color/colorVerdeFondoPantallas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/divider2"
+                app:srcCompat="@drawable/icono_perro" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Img_IconoPerro"
+                app:layout_constraintVertical_bias="0.6">
+
+                <EditText
+                    android:id="@+id/editText4"
+                    android:layout_width="301dp"
+                    android:layout_height="39dp"
+                    android:background="@color/blanco"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Nombre           " />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="173dp"
+                    android:layout_height="34dp"
+                    android:background="@color/blanco"
+                    android:text="Seleccione la raza:"
+                    android:textSize="18sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_razas"
+                    android:layout_width="295dp"
+                    android:layout_height="46dp"
+                    android:background="@color/blanco"
+                    android:entries="@array/razas_spinner" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="181dp"
+                    android:layout_height="23dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="28dp"
+                    android:background="@color/blanco"
+                    android:text="¿Está esterilizado/a?"
+                    android:textSize="18dp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="205dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="108dp"
+                    android:background="@color/blanco"
+                    android:buttonTint="@color/colorVerdeFondoPantallas"
+                    android:text="No" />
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="205dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="108dp"
+                    android:layout_marginBottom="36dp"
+                    android:background="@color/blanco"
+                    android:buttonTint="@color/colorVerdeFondoPantallas"
+                    android:text="Si         " />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="304dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/blanco"
+                    android:text="Seleccione el tamaño de su mascota"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_tamanoMascota"
+                    android:layout_width="310dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/blanco"
+                    android:entries="@array/tamano_spinner" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/blanco"
+                    android:text="¿Que vacunas tiene?"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_vacunas"
+                    android:layout_width="312dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/blanco"
+                    android:entries="@array/vacunas_spinner" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="395dp"
+                android:layout_height="1dp"
+                android:background="@color/colorVerdeFondoPantallas"
+                android:backgroundTint="@color/colorVerdeFondoPantallas"
+                android:backgroundTintMode="add"
+                android:foregroundTint="@color/colorVerdeFondoPantallas"
+                android:foregroundTintMode="add"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="20dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
