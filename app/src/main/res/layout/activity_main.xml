@@ -72,14 +72,14 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/btn_rounded"
         android:text="@string/iniciar_sesion"
-        android:textColor="@color/blanco"
         android:textAllCaps="false"
+        android:textColor="@color/blanco"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.121" />
 
     <TextView
         android:id="@+id/registro"
