@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     android:tooltipText="@string/registro"
     tools:context=".Register">
 
@@ -39,11 +40,12 @@
 
             <EditText
                 android:id="@+id/nombreApellido"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="347dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/nombre_apellido"
@@ -53,10 +55,11 @@
 
             <EditText
                 android:id="@+id/email"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="347dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/email"
@@ -66,10 +69,11 @@
 
             <EditText
                 android:id="@+id/contrasena"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="349dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:text="@string/contrasena"
@@ -79,10 +83,11 @@
 
             <EditText
                 android:id="@+id/confContrasena"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="344dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:text="@string/conf_contrasena"
@@ -92,10 +97,11 @@
 
             <EditText
                 android:id="@+id/movil"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="347dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/movil"
@@ -105,10 +111,11 @@
 
             <EditText
                 android:id="@+id/direccion"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="342dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/direccion"
@@ -118,10 +125,11 @@
 
             <EditText
                 android:id="@+id/pisoOficinaApto"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="347dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/piso_oficina_apto"
@@ -135,6 +143,7 @@
                 android:layout_height="47dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:text="@string/term_y_cond"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -147,6 +156,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/blanco"
                 android:text="@string/con_term_y_cond"
                 android:textColor="@color/negro"
                 app:layout_constraintEnd_toEndOf="parent"

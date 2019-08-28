@@ -21,6 +21,42 @@
     <string name="mens_subir_archivo">Por favor suba el archivo del certificado</string>
     <string name="subir_archivo">Subir Archivo</string>
     <string name="calendario_del_mes">Calendario del mes</string>
+
+    <string-array name="razas_spinner">
+        <item>Afgano</item>
+        <item>Barzoi</item>
+        <item>Boxer</item>
+        <item>Caniche</item>
+        <item>Chihuahua</item>
+        <item>Criollo</item>
+        <item>Dalmata</item>
+        <item>Dogo Aleman</item>
+        <item>Gran Danes</item>
+        <item>Husky Siberiano</item>
+    </string-array>
+    <string-array name="tamano_spinner">
+        <item>Pequeño</item>
+        <item>Mediano</item>
+        <item>Grande</item>
+
+    </string-array>
+
+    <string-array name="vacunas_spinner">
+        <item>Moquillo</item>
+        <item>Parvovirosis</item>
+        <item>Rabia</item>
+        <item>Triple</item>
+        <item>Leptospira</item>
+    </string-array>
+
+    <string-array name="perros_spinner">
+        <item>Amaru</item>
+        <item>Wanda</item>
+        <item>London</item>
+        <item>Ariana</item>
+        <item>Pandora</item>
+    </string-array>
+
     <string name="title_activity_home__paseador">Home_Paseador</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -35,4 +71,9 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="title_activity_home_paseador">HomePaseador</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
