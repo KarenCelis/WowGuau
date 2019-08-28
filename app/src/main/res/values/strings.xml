@@ -21,6 +21,7 @@
     <string name="mens_subir_archivo">Por favor suba el archivo del certificado</string>
     <string name="subir_archivo">Subir Archivo</string>
     <string name="calendario_del_mes">Calendario del mes</string>
+<<<<<<< HEAD
     <string-array name="razas_spinner">
         <item>Afgano</item>
         <item>Barzoi</item>
@@ -47,4 +48,20 @@
         <item>Triple</item>
         <item>Leptospira</item>
     </string-array>
+=======
+    <string name="title_activity_home__paseador">Home_Paseador</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+>>>>>>> 4e1051a10b2d159a9bcfd21b7e2b0c7de3ec6707
 </resources>

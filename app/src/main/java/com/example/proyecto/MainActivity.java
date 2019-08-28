@@ -15,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button boton = (Button) findViewById( R.id.inicioButton);
-        boton.setOnClickListener(new View.OnClickListener() {
+
+        Button btnInicioSesion = (Button) findViewById( R.id.btnInicioSesion);
+        btnInicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent ( v.getContext(), Home.class);
@@ -24,15 +25,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView regis = (TextView)findViewById( R.id.registro);
+        TextView textViewinicioRegistro = (TextView)findViewById( R.id.textViewinicioRegistro);
 
-        regis.setOnClickListener( new View.OnClickListener (){
+        textViewinicioRegistro.setOnClickListener( new View.OnClickListener (){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent ( v.getContext(), Register.class);
                 startActivityForResult(intent, 0);
             }
         });
+
 
     }
 }
