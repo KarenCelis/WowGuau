@@ -48,7 +48,7 @@
         <item>Triple</item>
         <item>Leptospira</item>
     </string-array>
-    =======
+
     <string name="title_activity_home__paseador">Home_Paseador</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

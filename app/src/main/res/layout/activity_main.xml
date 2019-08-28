@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo2"
     android:backgroundTintMode="multiply"
     android:outlineAmbientShadowColor="@color/colorVerdeFondoPantallas"
     tools:context=".MainActivity">
+
+    <!---android:background="@drawable/fondo2" -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,14 +33,14 @@
                 android:layout_height="62dp"
                 android:text="¡Bienvenido WowGuau!"
                 android:textAlignment="center"
-<<<<<<< HEAD
+
                 android:textColor="@color/negro"
                 android:textSize="26sp"
                 android:textStyle="bold" />
-=======
+
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
->>>>>>> b748cdac4edf36d025dbd63aee5ef1a8bc54c10d
+
 
             <ImageView
                 android:id="@+id/imageView16"

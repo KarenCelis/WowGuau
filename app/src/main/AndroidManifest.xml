@@ -8,57 +8,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-<<<<<<< HEAD
+
         <activity
             android:name=".HomePaseador"
             android:label="@string/title_activity_home_paseador"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-=======
-<<<<<<< HEAD
+            android:theme="@style/AppTheme.NoActionBar"/>
 
-=======
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
->>>>>>> b748cdac4edf36d025dbd63aee5ef1a8bc54c10d
->>>>>>> d07fea573506143a13d45f23551a5675bf3076a7
         <activity
             android:name=".RegistrarMascota"
             android:label="RegistrarMascota"
             android:theme="@style/AppTheme" />
-<<<<<<< HEAD
-        <activity
-            android:name=".RegistrarMascota"
-            android:label="RegistrarMascota"
-            android:theme="@style/AppTheme" />
-=======
 
-<<<<<<< HEAD
-
-=======
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 272ee8ee2bc945d43c151032861a10af8bf9f72e
-        <activity 
-            android:name=".RegistrarMascota"
-            android:label="RegistrarMascota"
-            android:theme="@style/AppTheme" />
-<<<<<<< HEAD
-
-
-=======
-            />
->>>>>>> 0d7b6075dc8288b819bd34a9b697b310547895f9
->>>>>>> 4e1051a10b2d159a9bcfd21b7e2b0c7de3ec6707
->>>>>>> 272ee8ee2bc945d43c151032861a10af8bf9f72e
->>>>>>> b748cdac4edf36d025dbd63aee5ef1a8bc54c10d
-        <activity
-            android:name=".HomePaseador"
-            android:label="@string/home"
-            android:theme="@style/AppTheme" />
->>>>>>> d07fea573506143a13d45f23551a5675bf3076a7
         <activity
             android:name=".CertificadoPaseador"
             android:label="@string/certificado_paseador"
