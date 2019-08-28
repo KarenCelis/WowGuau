@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/calendario"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Calendario" />
+        <item
+            android:id="@+id/nuevoPaseo"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Nuevo Paseo" />
+        <item
+            android:id="@+id/historialPaseos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Historial de Paseos" />
+
+    </group>
+
+
+    <item android:title="Otras opciones">
+        <menu>
+            <item
+                android:id="@+id/perfil"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Ver Perfil" />
+            <item
+                android:id="@+id/cerrarSesion"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Cerrar Sesion" />
+        </menu>
+    </item>
+
+
+</menu>
