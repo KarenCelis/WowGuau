@@ -21,7 +21,7 @@
     <string name="mens_subir_archivo">Por favor suba el archivo del certificado</string>
     <string name="subir_archivo">Subir Archivo</string>
     <string name="calendario_del_mes">Calendario del mes</string>
-<<<<<<< HEAD
+
     <string-array name="razas_spinner">
         <item>Afgano</item>
         <item>Barzoi</item>
