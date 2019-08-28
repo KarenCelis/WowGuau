@@ -1,6 +1,7 @@
 package com.example.proyecto;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ import androidx.fragment.app.Fragment;
  * Use the {@link HistorialPaseosFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HistorialPaseosFragment extends Fragment {
+public class HistorialPaseosFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
@@ -25,4 +26,5 @@ public class HistorialPaseosFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_historialpaseos, container, false);
     }
 
+   
 }
