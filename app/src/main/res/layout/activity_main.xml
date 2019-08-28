@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#87CC2C"
+    android:background="@drawable/fondo2"
+    android:backgroundTintMode="multiply"
     android:outlineAmbientShadowColor="@color/colorVerdeFondoPantallas"
     tools:context=".MainActivity">
 
     <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="372dp"
-        android:layout_height="716dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -29,11 +29,17 @@
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="62dp"
                 android:text="¡Bienvenido WowGuau!"
                 android:textAlignment="center"
+<<<<<<< HEAD
+                android:textColor="@color/negro"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+=======
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
+>>>>>>> b748cdac4edf36d025dbd63aee5ef1a8bc54c10d
 
             <ImageView
                 android:id="@+id/imageView16"
@@ -49,9 +55,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Usuario" />
+                android:text="Usuario"
+                android:textColor="@color/negro" />
 
             <EditText
                 android:id="@+id/editText6"
@@ -60,9 +68,11 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Contraeña" />
+                android:text="Contraeña"
+                android:textColor="@color/negro" />
 
             <Button
                 android:id="@+id/btnInicioSesion"
