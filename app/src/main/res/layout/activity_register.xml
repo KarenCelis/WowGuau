@@ -155,8 +155,8 @@
 
             <ImageButton
                 android:id="@+id/sigButton"
-                android:layout_width="88dp"
-                android:layout_height="87dp"
+                android:layout_width="83dp"
+                android:layout_height="81dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"

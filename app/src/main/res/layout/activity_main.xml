@@ -32,8 +32,9 @@
                 android:layout_height="match_parent"
                 android:text="¡Bienvenido WowGuau!"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="26sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imageView16"
@@ -78,7 +79,7 @@
                 android:layout_height="50dp"
                 android:text="Registrarse"
                 android:textAlignment="center"
-                android:textColor="@color/negro"
+                android:textColor="#FFFFFF"
                 android:textSize="22sp"
                 android:textStyle="bold" />
         </LinearLayout>
