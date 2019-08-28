@@ -1,7 +1,6 @@
 package com.example.proyecto;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +11,7 @@ public class TipoUsuario extends AppCompatActivity {
     ImageButton Boton_Ic;
     ImageButton Boton_Icono_P;
     Button Boton_D;
+    Button Boton_P;
 
 
     @Override
@@ -19,8 +19,9 @@ public class TipoUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_usuario);
         Boton_Ic= findViewById(R.id.Boton_Icono_Dueño);
-        Boton_Icono_P= findViewById(R.id.Boton_Icono_Paseador);
         Boton_D=findViewById(R.id.Boton_Dueño);
+        Boton_Icono_P= findViewById(R.id.Boton_Icono_Paseador);
+        Boton_P = findViewById(R.id.Boton_Paseador);
 
         Boton_Ic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +38,24 @@ public class TipoUsuario extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Boton_Icono_P.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentCertf = new Intent(view.getContext(), CertificadoPaseador.class);
+                startActivity(intentCertf);
+            }
+        });
+
+        Boton_P.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                Intent intentCert = new Intent(view.getContext(), CertificadoPaseador.class);
+                startActivity(intentCert);
+            }
+        });
+
 
     }
 }

@@ -8,14 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-<<<<<<< HEAD
-=======
+
         <activity 
             android:name=".RegistrarMascota"
             android:label="RegistrarMascota"
             android:theme="@style/AppTheme" />
-            />
->>>>>>> 0d7b6075dc8288b819bd34a9b697b310547895f9
+
+
         <activity
             android:name=".HomePaseador"
             android:label="@string/home"

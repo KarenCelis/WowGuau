@@ -33,7 +33,7 @@
                 android:text="¡Bienvenido WowGuau!"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="26sp" />
+                android:textSize="30sp" />
 
             <ImageView
                 android:id="@+id/imageView16"
