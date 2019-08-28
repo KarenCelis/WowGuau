@@ -21,4 +21,30 @@
     <string name="mens_subir_archivo">Por favor suba el archivo del certificado</string>
     <string name="subir_archivo">Subir Archivo</string>
     <string name="calendario_del_mes">Calendario del mes</string>
+    <string-array name="razas_spinner">
+        <item>Afgano</item>
+        <item>Barzoi</item>
+        <item>Boxer</item>
+        <item>Caniche</item>
+        <item>Chihuahua</item>
+        <item>Criollo</item>
+        <item>Dalmata</item>
+        <item>Dogo Aleman</item>
+        <item>Gran Danes</item>
+        <item>Husky Siberiano</item>
+    </string-array>
+    <string-array name="tamano_spinner">
+        <item>Pequeño</item>
+        <item>Mediano</item>
+        <item>Grande</item>
+
+    </string-array>
+
+    <string-array name="vacunas_spinner">
+        <item>Moquillo</item>
+        <item>Parvovirosis</item>
+        <item>Rabia</item>
+        <item>Triple</item>
+        <item>Leptospira</item>
+    </string-array>
 </resources>

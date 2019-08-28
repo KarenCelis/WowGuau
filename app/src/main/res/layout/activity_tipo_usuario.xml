@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".TipoUsuario">
 
     <ScrollView
@@ -13,6 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/fondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,19 +22,21 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/fondo">
 
-            <TextView
+            <Button
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="168dp"
+                android:layout_width="94dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="108dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="156dp"
+                android:background="@color/blanco"
                 android:text="Eres:"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.018"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +45,7 @@
                 android:layout_width="395dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="36dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="36dp"
                 android:background="#89F545"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +58,10 @@
                 android:layout_height="159dp"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="64dp"
+                android:layout_marginEnd="26dp"
                 android:backgroundTint="@color/colorVerdeFondoPantallas"
                 android:scaleType="fitXY"
+                app:layout_constraintEnd_toStartOf="@+id/Boton_Icono_Paseador"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
                 app:srcCompat="@drawable/icono_dueno" />
@@ -82,6 +88,7 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
+                android:background="@color/blanco"
                 android:text="Dueño"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,12 +101,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="48dp"
+                android:layout_marginEnd="68dp"
                 android:layout_marginBottom="8dp"
+                android:background="@color/blanco"
                 android:text="Paseador"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.968"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/Boton_Dueño"
                 app:layout_constraintTop_toBottomOf="@+id/Boton_Icono_Paseador"
                 app:layout_constraintVertical_bias="1.0" />
