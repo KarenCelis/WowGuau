@@ -148,6 +148,12 @@
                     android:layout_marginBottom="8dp"
                     android:background="@color/blanco"
                     android:entries="@array/vacunas_spinner" />
+
+                <Button
+                    android:id="@+id/btnListo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Listo" />
             </LinearLayout>
 
             <View

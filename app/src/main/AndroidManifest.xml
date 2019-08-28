@@ -8,18 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-
-
-        <activity 
+        <activity android:name=".HomeDueno"></activity>
+        <activity
             android:name=".RegistrarMascota"
             android:label="RegistrarMascota"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".HomePaseador"
             android:label="@string/title_activity_home_paseador"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CertificadoPaseador"
             android:label="@string/certificado_paseador"
