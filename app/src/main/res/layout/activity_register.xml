@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
-    android:tooltipText="@string/registro"
     tools:context=".Register">
 
     <ScrollView
@@ -48,10 +46,12 @@
                 android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/nombre_apellido"
+                android:hint="@string/nombre_apellido"
+                android:textColor="@color/negro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/email"
@@ -62,35 +62,38 @@
                 android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/email"
+                android:hint="@string/email"
+                android:textColor="@color/negro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nombreApellido" />
 
             <EditText
                 android:id="@+id/contrasena"
-                android:layout_width="349dp"
+                android:layout_width="347dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:text="@string/contrasena"
+                android:hint="@string/contrasena"
+                android:textColor="@color/negro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email" />
 
             <EditText
                 android:id="@+id/confContrasena"
-                android:layout_width="344dp"
+                android:layout_width="347dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:text="@string/conf_contrasena"
+                android:hint="@string/conf_contrasena"
+                android:textColor="@color/negro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contrasena" />
@@ -104,21 +107,23 @@
                 android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/movil"
+                android:hint="@string/movil"
+                android:textColor="@color/negro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/confContrasena" />
 
             <EditText
                 android:id="@+id/direccion"
-                android:layout_width="342dp"
+                android:layout_width="347dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/direccion"
+                android:hint="@string/direccion"
+                android:textColor="@color/negro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movil" />
@@ -132,7 +137,8 @@
                 android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/piso_oficina_apto"
+                android:hint="@string/piso_oficina_apto"
+                android:textColor="@color/negro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/direccion" />
@@ -177,7 +183,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/termycond"
                 app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/botonsiguiente" />
+                app:srcCompat="@drawable/botonsiguiente"
+                android:contentDescription="TODO" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

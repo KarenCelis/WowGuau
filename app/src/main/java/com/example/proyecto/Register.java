@@ -29,19 +29,21 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
+
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent ( v.getContext(), TipoUsuario.class);
+                Intent intent = new Intent ( v.getContext(), OwnerRegister.class);
                 startActivityForResult(intent, 0);
             }
         });
+
         TextView terms = (TextView)findViewById( R.id.termycond);
 
         terms.setOnClickListener( new View.OnClickListener (){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent ( v.getContext(), TerminosCondiciones.class);
+                Intent intent = new Intent ( v.getContext(), Home.class);
                 startActivityForResult(intent, 0);
             }
         });

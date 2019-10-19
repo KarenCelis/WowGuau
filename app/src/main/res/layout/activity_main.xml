@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTintMode="multiply"
-    android:outlineAmbientShadowColor="@color/colorVerdeFondoPantallas"
+    android:background="@color/colorVerdeFondoPantallas"
     tools:context=".MainActivity">
 
     <!---android:background="@drawable/fondo2" -->
@@ -46,7 +46,7 @@
                 app:srcCompat="@mipmap/inicio" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/emailmain"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
@@ -56,11 +56,12 @@
                 android:background="@color/blanco"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Usuario"
-                android:textColor="@color/negro" />
+                android:hint="Usuario"
+                android:textColorHint="@color/negro"
+                android:textColor="@color/negro"/>
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
@@ -68,9 +69,10 @@
                 android:layout_marginBottom="8dp"
                 android:background="@color/blanco"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Contraeña"
-                android:textColor="@color/negro" />
+                android:inputType="textPassword"
+                android:hint="Contraseña"
+                android:textColorHint="@color/negro"
+                android:textColor="@color/negro"/>
 
             <Button
                 android:id="@+id/btnInicioSesion"
@@ -84,6 +86,7 @@
                 android:id="@+id/textViewinicioRegistro"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="20dp"
                 android:text="Registrarse"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
