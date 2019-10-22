@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">WowGuauV2</string>
+    <string name="title_activity_mapa_seleccion">Mapa Seleccion</string>
     <string-array name="Tipo">
         <item>Cliente</item>
         <item>Paseador</item>

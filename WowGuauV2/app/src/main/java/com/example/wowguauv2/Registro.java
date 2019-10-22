@@ -3,9 +3,11 @@ package com.example.wowguauv2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -55,6 +58,13 @@ public class Registro extends AppCompatActivity {
         lon = findViewById(R.id.Longitud);
         calc = findViewById(R.id.Ir);
 
+        calc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), MapaSeleccion.class);
+                startActivityForResult(i, 1);
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
         btn_registrar.setOnClickListener(new View.OnClickListener() {
@@ -116,5 +126,21 @@ public class Registro extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                Bundle b = data.getExtras();
+                Log.i("LOG", String.valueOf(b.get("lat")));
+                lat.setText(String.valueOf(b.get("lat")));
+                lon.setText(String.valueOf(b.get("long")));
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
 }
 
