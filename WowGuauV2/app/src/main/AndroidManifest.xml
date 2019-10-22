@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ListaSolicitudesPaseador"></activity>
+        <activity android:name=".DetalleySolicitudPaseador" />
+        <activity android:name=".ListaPaseadoresCercanos" />
+        <activity android:name=".ListaMascotas" />
+        <activity android:name=".RegistrarMascota" />
+        <activity android:name=".PPrincipalCliente" />
+        <activity android:name=".RegistroPaseador" />
+        <activity android:name=".Registro" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

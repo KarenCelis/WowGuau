@@ -5,29 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    tools:context=".PPrincipalCliente">
 
     <Button
-        android:id="@+id/IniciarSesion"
+        android:id="@+id/ListaPaseadores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesion" />
+        android:text="ListaPaseadores" />
 
     <Button
-        android:id="@+id/Registrarse"
+        android:id="@+id/RegistrarMascota"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse" />
+        android:text="RegistrarMascota" />
 
     <Button
-        android:id="@+id/IniciarSesionP"
+        android:id="@+id/ListaMascotas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesion Paseador" />
+        android:text="ListaMascotas" />
 
+    <Button
+        android:id="@+id/CerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CerrarSesion" />
 </LinearLayout>
