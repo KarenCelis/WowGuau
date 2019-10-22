@@ -1,41 +1,123 @@
 package com.example.wowguauv2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     Button iniciarSesion;
     Button iniciarSesionp;
     Button registrarse;
+    private FirebaseAuth firebaseAuth;
+    EditText txtCorreo, txtContraseña;
+    Button Iniciar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        iniciarSesion = findViewById(R.id.IniciarSesion);
         iniciarSesionp = findViewById(R.id.IniciarSesionP);
-        registrarse = findViewById(R.id.Registrarse);
-        iniciarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
-            }
-        });
-        iniciarSesionp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ListaSolicitudesPaseador.class));
-            }
-        });
+        registrarse = findViewById(R.id.Registrar);
+
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), Registro.class));
             }
         });
+        ////////////////
+
+        iniciarSesionp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ListaSolicitudesPaseador.class));
+            }
+        });
+
+        txtCorreo = findViewById(R.id.correo);
+        txtContraseña = findViewById(R.id.contraseña);
+        Iniciar = findViewById(R.id.IniciarSesion);
+        firebaseAuth = FirebaseAuth.getInstance();
+        Iniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = txtCorreo.getText().toString().trim();
+                String password = txtContraseña.getText().toString().trim();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(MainActivity.this, "Ingrese su correo", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }
+                if (TextUtils.isEmpty(password)) {
+
+                    Toast.makeText(MainActivity.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }
+
+                if (password.length() < 6) {
+
+                    Toast.makeText(MainActivity.this, "Contraseña muy corta", Toast.LENGTH_SHORT).show();
+
+
+                }
+                firebaseAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
+                                    //if de intent
+
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Error al Iniciar Sesión", Toast.LENGTH_SHORT).show();
+                                }
+
+                                // ...
+                            }
+                        });
+
+            }
+        });
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+        if (currentUser != null) {
+            //if de intent
+            Intent intent = new Intent(getBaseContext(), PPrincipalCliente.class);
+            intent.putExtra("user", currentUser.getEmail());
+            startActivity(intent);
+        } else {
+            txtCorreo.setText("");
+            txtContraseña.setText("");
+        }
+    }
+
+    public void btn_RegistrarF(View view) {
+        startActivity(new Intent(getApplicationContext(), Registro.class));
+    }
+
+
 }

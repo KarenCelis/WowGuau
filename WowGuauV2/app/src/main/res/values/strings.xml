@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">WowGuauV2</string>
+    <string-array name="Tipo">
+        <item>Cliente</item>
+        <item>Paseador</item>
+
+    </string-array>
 </resources>
