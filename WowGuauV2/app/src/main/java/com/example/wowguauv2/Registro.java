@@ -35,7 +35,7 @@ public class Registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        //  siguiente=findViewById(R.id.continuar);
+        siguiente=findViewById(R.id.btnregistr);
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
