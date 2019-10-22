@@ -20,9 +20,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Registro extends AppCompatActivity {
 
+    public static final String PATHUSER="user/client/";
     Button siguiente;
     EditText txtCorreo, txtContraseña, txtConfirmarContraseña, txtnombre, txtedad, txtdireccion;
     TextView lat, lon;
@@ -30,6 +34,10 @@ public class Registro extends AppCompatActivity {
     Button calc;
     ProgressBar progressBar;
     Usuario usuario;
+    //FireBase Realdatabase
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef;
+
 
 
     private FirebaseAuth firebaseAuth;
@@ -103,16 +111,20 @@ public class Registro extends AppCompatActivity {
 
                 }
                 progressBar.setVisibility(view.VISIBLE);
-                usuario = new Usuario(name, email, age, address, 2.5, 2.5, "asdfg", "dfgh");
+                usuario = new Usuario(name, email, age, address, Double.valueOf(lat.getText().toString()), Double.valueOf((String) lon.getText()), "asdfg", "dfgh");
                 if (password.equals(confPassword)) {
-
+                    //AUTENTICACION
                     firebaseAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(Registro.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
-                                        startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
+                                        //DATAUSER
+                                        myRef = database.getReference(PATHUSER+task.getResult().getUser().getUid());
+                                        myRef.setValue(usuario);
+
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         Toast.makeText(Registro.this, "Registrad@", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(Registro.this, "Error en la autenticacion", Toast.LENGTH_SHORT).show();
@@ -121,6 +133,9 @@ public class Registro extends AppCompatActivity {
                                     // ...
                                 }
                             });
+
+
+
                 }
 
             }
