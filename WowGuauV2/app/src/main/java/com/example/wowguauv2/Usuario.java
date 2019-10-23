@@ -1,6 +1,8 @@
 package com.example.wowguauv2;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     private String nombre;
     private String correo;
@@ -87,5 +89,19 @@ public class Usuario {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", edad=" + edad +
+                ", direccion='" + direccion + '\'' +
+                ", latitud=" + latitud +
+                ", longitud=" + longitud +
+                ", pathFoto='" + pathFoto + '\'' +
+                ", tipo='" + tipo + '\'' +
+                '}';
     }
 }
