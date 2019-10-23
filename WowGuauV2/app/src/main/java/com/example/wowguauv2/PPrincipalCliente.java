@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class PPrincipalCliente extends AppCompatActivity {
 Button registrarM;
 Button listaM;
@@ -44,6 +46,8 @@ Button cerrar;
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                fAuth.signOut();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         });

@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,23 +24,32 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Registro extends AppCompatActivity {
 
@@ -55,6 +65,7 @@ public class Registro extends AppCompatActivity {
     Button calc;
     ProgressBar progressBar;
     Usuario usuario;
+    Spinner spine;
     //FireBase Realdatabase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -63,6 +74,11 @@ public class Registro extends AppCompatActivity {
     ImageButton gallerybutton;
     ImageButton camerabutton;
     Uri profile;
+    String userid;
+    BitmapFactory.Options options;
+    String mCurrentPhotoPath;
+    //Storage
+    StorageReference mStorageRef;
 
     private FirebaseAuth firebaseAuth;
 
@@ -86,6 +102,8 @@ public class Registro extends AppCompatActivity {
         imagen = findViewById(R.id.imagePrev);
         gallerybutton = findViewById(R.id.gallerybutton);
         camerabutton = findViewById(R.id.cameraButton);
+        spine = findViewById(R.id.spinner);
+
 
         //GALERIA
         gallerybutton.setOnClickListener(new View.OnClickListener() {
@@ -114,52 +132,82 @@ public class Registro extends AppCompatActivity {
         btn_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = txtCorreo.getText().toString().trim();
-                String password = txtContraseña.getText().toString().trim();
-                String confPassword = txtConfirmarContraseña.getText().toString().trim();
-                String name = txtnombre.getText().toString().trim();
-                Integer age = Integer.valueOf(txtedad.getText().toString().trim());
-                String address = txtdireccion.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(Registro.this, "Ingrese su correo", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(confPassword)) {
-                    Toast.makeText(Registro.this, "Confirme su contraseña", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (password.length() < 6) {
-                    Toast.makeText(Registro.this, "Contraseña muy corta", Toast.LENGTH_SHORT).show();
-                }
-                progressBar.setVisibility(view.VISIBLE);
-                usuario = new Usuario(name, email, age, address, Double.valueOf(lat.getText().toString()), Double.valueOf((String) lon.getText()), "asdfg", "dfgh");
-                if (password.equals(confPassword)) {
-                    //AUTENTICACION
-                    firebaseAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(Registro.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(View.GONE);
-                                    if (task.isSuccessful()) {
-                                        //DATAUSER
-                                        myRef = database.getReference(PATHUSER + task.getResult().getUser().getUid());
-                                        myRef.setValue(usuario);
-                                        ////////////
-                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                        Toast.makeText(Registro.this, "Registrad@", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(Registro.this, "Error en la autenticacion", Toast.LENGTH_SHORT).show();
+                if(spine.getSelectedItem().toString().equals("Cliente"))
+                {
+                    String email = txtCorreo.getText().toString().trim();
+                    String password = txtContraseña.getText().toString().trim();
+                    String confPassword = txtConfirmarContraseña.getText().toString().trim();
+                    String name = txtnombre.getText().toString().trim();
+                    Integer age = Integer.valueOf(txtedad.getText().toString().trim());
+                    String address = txtdireccion.getText().toString().trim();
+
+                    if (TextUtils.isEmpty(email)) {
+                        Toast.makeText(Registro.this, "Ingrese su correo", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (TextUtils.isEmpty(password)) {
+                        Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (TextUtils.isEmpty(confPassword)) {
+                        Toast.makeText(Registro.this, "Confirme su contraseña", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (password.length() < 6) {
+                        Toast.makeText(Registro.this, "Contraseña muy corta", Toast.LENGTH_SHORT).show();
+                    }
+                    progressBar.setVisibility(view.VISIBLE);
+                    usuario = new Usuario(name, email, age, address, Double.valueOf(lat.getText().toString()), Double.valueOf((String) lon.getText()), "Nofoto", spine.getSelectedItem().toString());
+                    if (password.equals(confPassword)) {
+                        //AUTENTICACION
+                        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(Registro.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        progressBar.setVisibility(View.GONE);
+                                        if (task.isSuccessful()) {
+                                            userid = task.getResult().getUser().getUid();
+                                            //STORAGE
+                                            mStorageRef = FirebaseStorage.getInstance().getReference();
+                                            StorageReference userRef = mStorageRef.child("users/" + userid + "/profile");
+
+                                            userRef.putFile(profile)
+                                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                        @Override
+                                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                            Log.i("TAG", "Exito subida de imagen");
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception exception) {
+                                                            Log.e("TAG", "Fallo subida de imagen");
+                                                        }
+                                                    });
+                                            //DATAUSER
+                                            usuario.setPathFoto("users/" + userid + "/profile");
+                                            myRef = database.getReference(PATHUSER + userid);
+                                            myRef.setValue(usuario);
+
+                                            firebaseAuth.signOut();
+
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                            Toast.makeText(Registro.this, "Registrad@", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(Registro.this, "Error en la autenticacion", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        // ...
                                     }
-
-                                    // ...
-                                }
-                            });
+                                });
+                    }
                 }
+                else{
+                    startActivity(new Intent(getApplicationContext(), RegistroPaseador.class));
+                }
+
+
             }
         });
     }
@@ -192,16 +240,47 @@ public class Registro extends AppCompatActivity {
     }
 
     ///////////////CAMERA
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
     private void takePicture() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-
 
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             // Ensure that there's a camera activity to handle the intent
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                // Create the File where the photo should go
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                }
+                // Continue only if the File was successfully created
+                if (photoFile != null) {
+                    Log.i("TAG", "takePicture: " + photoFile);
+                    Uri photoURI = FileProvider.getUriForFile(this, "com.example.wowguauv2",
+                            photoFile);
+                    profile = photoURI;
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
+                }
             }
         } else {
             Toast.makeText(this,
@@ -211,6 +290,7 @@ public class Registro extends AppCompatActivity {
                     "Se necesita acceder a la camara", REQUEST_IMAGE_CAPTURE);
         }
     }
+
 
     /////////////MAPA SELECCION
     //Metodo que se acciona cuando seleccion una ubicacion y regresa
@@ -239,18 +319,28 @@ public class Registro extends AppCompatActivity {
                         final InputStream imageStream = getContentResolver().openInputStream(profile);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         imagen.setImageBitmap(selectedImage);
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
                 return;
             }
-            case REQUEST_IMAGE_CAPTURE:
-            {
+            case REQUEST_IMAGE_CAPTURE: {
                 if (resultCode == RESULT_OK) {
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    imagen.setImageBitmap(imageBitmap);
+
+
+                    File imgFile = new File(mCurrentPhotoPath);
+
+
+                    if (imgFile.exists()) {
+                        Log.i("TAG", "-->" + imgFile.getPath());
+                        options = new BitmapFactory.Options();
+                        options.inSampleSize = 16;
+                        Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getPath(), options);
+                        imagen.setImageBitmap(myBitmap);
+                    }
+
                 }
 
                 return;
