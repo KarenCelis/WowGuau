@@ -24,8 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    Button iniciarSesion;
-    Button iniciarSesionp;
+
     Button registrarse;
     private FirebaseAuth firebaseAuth;
     EditText txtCorreo, txtContraseña;
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        iniciarSesionp = findViewById(R.id.IniciarSesionP);
         registrarse = findViewById(R.id.Registrar);
         database = FirebaseDatabase.getInstance();
         getSupportActionBar().setTitle("Bienvenido a WowGuau");
@@ -50,12 +48,6 @@ public class MainActivity extends AppCompatActivity {
         });
         ////////////////
 
-        iniciarSesionp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ListaSolicitudesPaseador.class));
-            }
-        });
 
         txtCorreo = findViewById(R.id.correo);
         txtContraseña = findViewById(R.id.contraseña);

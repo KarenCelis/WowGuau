@@ -125,9 +125,9 @@ public class MapaSeleccion extends FragmentActivity implements OnMapReadyCallbac
         mMap.setMapStyle(MapStyleOptions
                 .loadRawResourceStyle(this, R.raw.mapa));
 
-        LatLng location = new LatLng(4.0151969, -74.1989402);
+        LatLng location = new LatLng(4.643967681564348, -74.09724276512863);
         lastmarker = mMap.addMarker(new MarkerOptions().position(location).title("Aqui"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 5));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12));
 
         lastmarker.remove();
 
