@@ -6,21 +6,21 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="45sp"
+        android:id="@+id/iconMascota"
+        android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_weight="0.1"
-        app:srcCompat="@drawable/cliente" />
+        app:srcCompat="@drawable/pastor" />
 
     <TextView
-        android:id="@+id/nombre_cliente"
+        android:id="@+id/nombre_mascota"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_weight="0.6"
         android:gravity="center" />
 
     <TextView
-        android:id="@+id/distancia"
+        android:id="@+id/raza"
         android:layout_height="45dp"
         android:layout_width="0dp"
         android:layout_weight="0.3"

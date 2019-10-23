@@ -13,8 +13,8 @@ public class DetalleySolicitudPaseador extends AppCompatActivity {
     ListView lv2;
 
     String [][] datos = {
-            {"Jorge Paredes", "3.00 km"},
-            {"Juan Ortiz", "4.00 km"}
+            {"Croky", "Pug"},
+            {"Benny", "Pastor"}
     };
 
     @Override
@@ -23,7 +23,7 @@ public class DetalleySolicitudPaseador extends AppCompatActivity {
         setContentView(R.layout.activity_detalley_solicitud_paseador);
 
         lv2 = (ListView) findViewById(R.id.lv2);
-        lv2.setAdapter(new Adaptador(this, datos));
+        lv2.setAdapter(new AdaptadorLM(this, datos));
 
         
     }
