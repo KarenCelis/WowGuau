@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -44,6 +45,14 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
 
         lv1 = (ListView) findViewById(R.id.lv1);
         lv1.setAdapter(new Adaptador(this, datos));
+
+        lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(view.getContext(), DetalleySolicitudPaseador.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

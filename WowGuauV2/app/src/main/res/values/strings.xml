@@ -12,4 +12,7 @@
     <string name="menu_paseador">Menú Principal</string>
     <string name="estado">Tu Estado</string>
     <string name="seleccione">Seleccione el cliente</string>
+    <string name="detalles">Detalles</string>
+    <string name="cliente">Cliente</string>
+    <string name="mascotas">Mascotas</string>
 </resources>
