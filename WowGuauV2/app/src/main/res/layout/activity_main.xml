@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="@drawable/button_rounded"
-        android:text="Iniciar Sesión Cliente"
+        android:text="Iniciar Sesión"
         android:textColor="#ffffff"
         android:textSize="22sp" />
 

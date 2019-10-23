@@ -19,6 +19,7 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
 
     Switch switchD;
     ListView lv1;
+    Button logout;
 
     String [][] datos = {
             {"Jorge Paredes", "3.00 km"},
@@ -30,15 +31,22 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_solicitudes_paseador);
 
+        logout = findViewById(R.id.logout);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                fAuth.signOut();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
+
         switchD = (Switch) findViewById(R.id.switch_disponible);
 
         switchD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                FirebaseAuth fAuth = FirebaseAuth.getInstance();
-                fAuth.signOut();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
                 if (switchD.isChecked()){
                     switchD.setText(getResources().getText(R.string.disponible));
