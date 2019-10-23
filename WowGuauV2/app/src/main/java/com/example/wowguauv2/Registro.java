@@ -2,15 +2,26 @@ package com.example.wowguauv2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +35,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Console;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class Registro extends AppCompatActivity {
+
+    public static final int READ_EXTERNAL_STORAGE2 = 0;
+    public static final int IMAGE_PICKER_REQUEST2 = 2;
+    public static final int REQUEST_IMAGE_CAPTURE = 3;
 
     public static final String PATHUSER = "user/client/";
     Button siguiente;
@@ -37,7 +58,11 @@ public class Registro extends AppCompatActivity {
     //FireBase Realdatabase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
-
+    //imagen
+    ImageView imagen;
+    ImageButton gallerybutton;
+    ImageButton camerabutton;
+    Uri profile;
 
     private FirebaseAuth firebaseAuth;
 
@@ -45,13 +70,7 @@ public class Registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        siguiente = findViewById(R.id.btnregistr);
-        siguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), RegistroPaseador.class));
-            }
-        });
+
         getSupportActionBar().setTitle("Formulario de Registro");
         txtCorreo = findViewById(R.id.txt_correo);
         txtContraseña = findViewById(R.id.txt_contrasena);
@@ -64,7 +83,25 @@ public class Registro extends AppCompatActivity {
         lat = findViewById(R.id.Latitud);
         lon = findViewById(R.id.Longitud);
         calc = findViewById(R.id.Ir);
+        imagen = findViewById(R.id.imagePrev);
+        gallerybutton = findViewById(R.id.gallerybutton);
+        camerabutton = findViewById(R.id.cameraButton);
 
+        //GALERIA
+        gallerybutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addImage();
+            }
+        });
+        //CAMARA
+        camerabutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takePicture();
+            }
+        });
+        //MAPA
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +112,6 @@ public class Registro extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         btn_registrar.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 String email = txtCorreo.getText().toString().trim();
@@ -128,20 +164,101 @@ public class Registro extends AppCompatActivity {
         });
     }
 
+    //////////////////////PERMISOS
+    private void requestPermission(Activity context, String permission, String explanation, int requestId) {
+        if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(context, permission)) {
+                Toast.makeText(context, explanation, Toast.LENGTH_LONG).show();
+            }
+            ActivityCompat.requestPermissions(context, new String[]{permission}, requestId);
+        }
+    }
+
+    //////////////GALLERY
+    private void addImage() {
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+            Intent pickImage = new Intent(Intent.ACTION_PICK);
+            pickImage.setType("image/*");
+            startActivityForResult(pickImage, IMAGE_PICKER_REQUEST2);
+        } else {
+            Toast.makeText(this, "Sin acceso a almacenamietno", Toast.LENGTH_LONG).show();
+            requestPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE,
+                    "Se necesita acceder al almacenamiento", READ_EXTERNAL_STORAGE2);
+        }
+
+
+    }
+
+    ///////////////CAMERA
+    private void takePicture() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+
+
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
+            }
+        } else {
+            Toast.makeText(this,
+                    "Sin acceso a camara",
+                    Toast.LENGTH_LONG).show();
+            requestPermission(this, Manifest.permission.CAMERA,
+                    "Se necesita acceder a la camara", REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    /////////////MAPA SELECCION
+    //Metodo que se acciona cuando seleccion una ubicacion y regresa
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                Bundle b = data.getExtras();
-                Log.i("LOG", String.valueOf(b.get("lat")));
-                lat.setText(String.valueOf(b.get("lat")));
-                lon.setText(String.valueOf(b.get("long")));
+        switch (requestCode) {
+            case 1: {
+                if (resultCode == Activity.RESULT_OK) {
+                    Bundle b = data.getExtras();
+                    Log.i("LOG", String.valueOf(b.get("lat")));
+                    lat.setText(String.valueOf(b.get("lat")));
+                    lon.setText(String.valueOf(b.get("long")));
+                }
+                if (resultCode == Activity.RESULT_CANCELED) {
+                    //Write your code if there's no result
+                }
+                return;
             }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
+            case IMAGE_PICKER_REQUEST2: {
+                if (resultCode == RESULT_OK) {
+                    try {
+                        profile = data.getData();
+                        Log.i("holas", "" + profile);
+
+                        final InputStream imageStream = getContentResolver().openInputStream(profile);
+                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                        imagen.setImageBitmap(selectedImage);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return;
             }
+            case REQUEST_IMAGE_CAPTURE:
+            {
+                if (resultCode == RESULT_OK) {
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    imagen.setImageBitmap(imageBitmap);
+                }
+
+                return;
+            }
+
         }
+
+
     }//onActivityResult
 }
 
