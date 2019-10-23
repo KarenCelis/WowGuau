@@ -6,4 +6,14 @@
         <item>Paseador</item>
 
     </string-array>
+
+    <string name="disponible">Disponible</string>
+    <string name="lista_solicitudes">Lista de Solicitudes</string>
+    <string name="menulogout">Cerrar Sesión</string>
+    <string name="menu_paseador">Menú Principal</string>
+    <string name="estado">Tu Estado</string>
+    <string name="seleccione">Seleccione el cliente</string>
+    <string name="detalles">Detalles</string>
+    <string name="cliente">Cliente</string>
+    <string name="mascotas">Mascotas</string>
 </resources>
