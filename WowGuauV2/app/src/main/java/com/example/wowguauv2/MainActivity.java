@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     Button iniciarSesion;
@@ -24,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     EditText txtCorreo, txtContraseña;
     Button Iniciar;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    Usuario myUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         iniciarSesionp = findViewById(R.id.IniciarSesionP);
         registrarse = findViewById(R.id.Registrar);
+        database = FirebaseDatabase.getInstance();
         getSupportActionBar().setTitle("Bienvenido a WowGuau");
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +90,58 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
+                                    Log.i("TAG", "onComplete: " + firebaseAuth.getUid());
+                                    myRef = database.getReference("user/client");
+                                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            Log.i("TAG", "onDataChange: " + dataSnapshot);
+                                            myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
+                                            Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
+                                            String name = myUser.getNombre();
+                                            int age = myUser.getEdad();
+                                            Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
+                                            if (myUser != null)
+                                            {
+                                            startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
+                                            }
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            Log.w("TAG", "error en la consulta", databaseError.toException());
+                                        }
+                                    });
+
+                                    if (myUser == null) {
+                                        myRef = database.getReference("user/paseador/" + firebaseAuth.getUid());
+                                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                                myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
+                                                Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
+                                                String name = myUser.getNombre();
+                                                int age = myUser.getEdad();
+                                                Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
+                                                if (myUser != null)
+                                                {
+                                                    startActivity(new Intent(getApplicationContext(), Paseador.class));
+                                                }
+
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+                                                Log.w("TAG", "error en la consulta", databaseError.toException());
+                                            }
+                                        });
+                                    }
+
+
                                     //if de intent
 
                                 } else {
