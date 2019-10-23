@@ -139,27 +139,27 @@ public class Registro extends AppCompatActivity {
                 Integer age = Integer.valueOf(txtedad.getText().toString().trim());
                 String address = txtdireccion.getText().toString().trim();
 
-                if(spine.getSelectedItem().toString().equals("Cliente"))
-                {
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(Registro.this, "Ingrese su correo", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(confPassword)) {
+                    Toast.makeText(Registro.this, "Confirme su contraseña", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (password.length() < 6) {
+                    Toast.makeText(Registro.this, "Contraseña muy corta", Toast.LENGTH_SHORT).show();
+                }
+
+                usuario = new Usuario(name, email, age, address, Double.valueOf(lat.getText().toString()), Double.valueOf((String) lon.getText()), "Nofoto", spine.getSelectedItem().toString());
+                if (spine.getSelectedItem().toString().equals("Cliente")) {
 
 
-                    if (TextUtils.isEmpty(email)) {
-                        Toast.makeText(Registro.this, "Ingrese su correo", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(password)) {
-                        Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(confPassword)) {
-                        Toast.makeText(Registro.this, "Confirme su contraseña", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (password.length() < 6) {
-                        Toast.makeText(Registro.this, "Contraseña muy corta", Toast.LENGTH_SHORT).show();
-                    }
                     progressBar.setVisibility(view.VISIBLE);
-                    usuario = new Usuario(name, email, age, address, Double.valueOf(lat.getText().toString()), Double.valueOf((String) lon.getText()), "Nofoto", spine.getSelectedItem().toString());
                     if (password.equals(confPassword)) {
                         //AUTENTICACION
                         firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -203,17 +203,16 @@ public class Registro extends AppCompatActivity {
                                     }
                                 });
                     }
-                }
-                else{
+                } else {
 
 
                     Intent i = new Intent(getApplicationContext(), RegistroPaseador.class);
-                    i.putExtra("Editing",usuario);
+                    i.putExtra("Editing", usuario);
 
-                    i.putExtra("Contraseña",password);
-                    i.putExtra("Profile",profile);// sending our object. In Kotlin is the same
+                    i.putExtra("Contraseña", password);
+                    i.putExtra("Profile", profile.toString());// sending our object. In Kotlin is the same
                     startActivity(i);
-                   // startActivity(new Intent(getApplicationContext(), RegistroPaseador.class));
+                    // startActivity(new Intent(getApplicationContext(), RegistroPaseador.class));
                 }
 
 

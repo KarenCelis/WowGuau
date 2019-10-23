@@ -54,7 +54,7 @@ public class RegistroPaseador extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         usuario = (Usuario) getIntent().getSerializableExtra("Editing");
         password = getIntent().getStringExtra("Contraseña");
-        profile=(Uri)getIntent().getSerializableExtra("Profile");
+        profile=Uri.parse((String) getIntent().getSerializableExtra("Profile"));
         sigu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +76,7 @@ public class RegistroPaseador extends AppCompatActivity {
                     Toast.makeText(RegistroPaseador.this, "Ingrese una descripción de los certificados", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressBar.setVisibility(view.VISIBLE);
+                //progressBar.setVisibility(view.VISIBLE);
                 paseador = new Paseador(usuario.getNombre(), usuario.getCorreo(), usuario.getEdad(), usuario.getDireccion(), usuario.getLatitud(), usuario.getLongitud(), usuario.getPathFoto(), usuario.getTipo(), description, ages, certificate);
 
                     //AUTENTICACION
@@ -84,7 +84,7 @@ public class RegistroPaseador extends AppCompatActivity {
                             .addOnCompleteListener(RegistroPaseador.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(View.GONE);
+                                    //progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
                                         userid = task.getResult().getUser().getUid();
                                         //STORAGE
