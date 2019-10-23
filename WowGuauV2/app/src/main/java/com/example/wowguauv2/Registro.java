@@ -87,7 +87,7 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        getSupportActionBar().setTitle("Formulario de Registro");
+        getSupportActionBar().setTitle("Registro");
         txtCorreo = findViewById(R.id.txt_correo);
         txtContraseña = findViewById(R.id.txt_contrasena);
         txtConfirmarContraseña = findViewById(R.id.txt_confirmcontr);
@@ -132,15 +132,16 @@ public class Registro extends AppCompatActivity {
         btn_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String email = txtCorreo.getText().toString().trim();
+                String password = txtContraseña.getText().toString().trim();
+                String confPassword = txtConfirmarContraseña.getText().toString().trim();
+                String name = txtnombre.getText().toString().trim();
+                Integer age = Integer.valueOf(txtedad.getText().toString().trim());
+                String address = txtdireccion.getText().toString().trim();
 
                 if(spine.getSelectedItem().toString().equals("Cliente"))
                 {
-                    String email = txtCorreo.getText().toString().trim();
-                    String password = txtContraseña.getText().toString().trim();
-                    String confPassword = txtConfirmarContraseña.getText().toString().trim();
-                    String name = txtnombre.getText().toString().trim();
-                    Integer age = Integer.valueOf(txtedad.getText().toString().trim());
-                    String address = txtdireccion.getText().toString().trim();
+
 
                     if (TextUtils.isEmpty(email)) {
                         Toast.makeText(Registro.this, "Ingrese su correo", Toast.LENGTH_SHORT).show();
@@ -204,7 +205,15 @@ public class Registro extends AppCompatActivity {
                     }
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(), RegistroPaseador.class));
+
+
+                    Intent i = new Intent(getApplicationContext(), RegistroPaseador.class);
+                    i.putExtra("Editing",usuario);
+
+                    i.putExtra("Contraseña",password);
+                    i.putExtra("Profile",profile);// sending our object. In Kotlin is the same
+                    startActivity(i);
+                   // startActivity(new Intent(getApplicationContext(), RegistroPaseador.class));
                 }
 
 

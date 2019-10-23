@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         iniciarSesionp = findViewById(R.id.IniciarSesionP);
         registrarse = findViewById(R.id.Registrar);
-
+        getSupportActionBar().setTitle("Bienvenido a WowGuau");
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,6 +1,8 @@
 package com.example.wowguauv2;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     private String nombre;
     private String correo;
