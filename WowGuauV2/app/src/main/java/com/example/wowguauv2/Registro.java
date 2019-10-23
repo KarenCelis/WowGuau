@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Registro extends AppCompatActivity {
 
-    public static final String PATHUSER="user/client/";
+    public static final String PATHUSER = "user/client/";
     Button siguiente;
     EditText txtCorreo, txtContraseña, txtConfirmarContraseña, txtnombre, txtedad, txtdireccion;
     TextView lat, lon;
@@ -39,14 +39,13 @@ public class Registro extends AppCompatActivity {
     DatabaseReference myRef;
 
 
-
     private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        siguiente=findViewById(R.id.btnregistr);
+        siguiente = findViewById(R.id.btnregistr);
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,28 +86,19 @@ public class Registro extends AppCompatActivity {
                 String address = txtdireccion.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-
                     Toast.makeText(Registro.this, "Ingrese su correo", Toast.LENGTH_SHORT).show();
                     return;
-
                 }
                 if (TextUtils.isEmpty(password)) {
-
                     Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
                     return;
-
                 }
                 if (TextUtils.isEmpty(confPassword)) {
-
                     Toast.makeText(Registro.this, "Confirme su contraseña", Toast.LENGTH_SHORT).show();
                     return;
-
                 }
                 if (password.length() < 6) {
-
                     Toast.makeText(Registro.this, "Contraseña muy corta", Toast.LENGTH_SHORT).show();
-
-
                 }
                 progressBar.setVisibility(view.VISIBLE);
                 usuario = new Usuario(name, email, age, address, Double.valueOf(lat.getText().toString()), Double.valueOf((String) lon.getText()), "asdfg", "dfgh");
@@ -121,9 +111,9 @@ public class Registro extends AppCompatActivity {
                                     progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
                                         //DATAUSER
-                                        myRef = database.getReference(PATHUSER+task.getResult().getUser().getUid());
+                                        myRef = database.getReference(PATHUSER + task.getResult().getUser().getUid());
                                         myRef.setValue(usuario);
-
+                                        ////////////
                                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         Toast.makeText(Registro.this, "Registrad@", Toast.LENGTH_SHORT).show();
                                     } else {
@@ -133,11 +123,7 @@ public class Registro extends AppCompatActivity {
                                     // ...
                                 }
                             });
-
-
-
                 }
-
             }
         });
     }
