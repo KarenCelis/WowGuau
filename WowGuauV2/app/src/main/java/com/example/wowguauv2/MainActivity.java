@@ -97,13 +97,42 @@ public class MainActivity extends AppCompatActivity {
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             Log.i("TAG", "onDataChange: " + dataSnapshot);
                                             myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
-                                            Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
-                                            String name = myUser.getNombre();
-                                            int age = myUser.getEdad();
-                                            Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
-                                            if (myUser != null)
-                                            {
-                                            startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
+                                            if (myUser != null) {
+                                                Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
+                                                String name = myUser.getNombre();
+                                                int age = myUser.getEdad();
+                                                Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
+                                                if (myUser.getTipo().equals("Cliente")) {
+                                                    startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
+                                                } else {
+                                                    startActivity(new Intent(getApplicationContext(), Paseador.class));
+                                                }
+                                            } else {
+                                                myRef = database.getReference("user/paseador" );
+                                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
+                                                        if (myUser != null) {
+                                                            Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
+                                                            String name = myUser.getNombre();
+                                                            int age = myUser.getEdad();
+                                                            Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
+                                                            if (myUser.getTipo().equals("Cliente")) {
+                                                                startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
+                                                            } else {
+                                                                startActivity(new Intent(getApplicationContext(), ListaSolicitudesPaseador.class));
+                                                            }
+                                                        }
+
+
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+                                                        Log.w("TAG", "error en la consulta", databaseError.toException());
+                                                    }
+                                                });
                                             }
 
 
@@ -114,32 +143,6 @@ public class MainActivity extends AppCompatActivity {
                                             Log.w("TAG", "error en la consulta", databaseError.toException());
                                         }
                                     });
-
-                                    if (myUser == null) {
-                                        myRef = database.getReference("user/paseador/" + firebaseAuth.getUid());
-                                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                                myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
-                                                Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
-                                                String name = myUser.getNombre();
-                                                int age = myUser.getEdad();
-                                                Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
-                                                if (myUser != null)
-                                                {
-                                                    startActivity(new Intent(getApplicationContext(), Paseador.class));
-                                                }
-
-
-                                            }
-
-                                            @Override
-                                            public void onCancelled(DatabaseError databaseError) {
-                                                Log.w("TAG", "error en la consulta", databaseError.toException());
-                                            }
-                                        });
-                                    }
 
 
                                     //if de intent
