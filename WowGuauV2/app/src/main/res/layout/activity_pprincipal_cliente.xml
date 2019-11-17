@@ -1,33 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".PPrincipalCliente">
 
     <Button
         android:id="@+id/ListaPaseadores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ListaPaseadores" />
+        android:layout_width="173dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="32dp"
+        android:text="ListaPaseadores"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/RegistrarMascota"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RegistrarMascota" />
+        android:layout_width="167dp"
+        android:layout_height="53dp"
+        android:text="RegistrarMascota"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ListaPaseadores"
+        app:layout_constraintVertical_bias="0.086" />
 
     <Button
         android:id="@+id/ListaMascotas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ListaMascotas" />
+        android:layout_width="168dp"
+        android:layout_height="47dp"
+        android:text="ListaMascotas"
+        app:layout_constraintBottom_toTopOf="@+id/CerrarSesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegistrarMascota"
+        app:layout_constraintVertical_bias="0.576" />
 
     <Button
         android:id="@+id/CerrarSesion"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="32dp"
+        android:text="CerrarSesion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.964" />
+
+    <TextView
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CerrarSesion" />
-</LinearLayout>
+        android:text="Menú Principal"
+        android:textColor="#4CAF50"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="309dp"
+        android:layout_height="154dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/perro_tierno" />
+</androidx.constraintlayout.widget.ConstraintLayout>
