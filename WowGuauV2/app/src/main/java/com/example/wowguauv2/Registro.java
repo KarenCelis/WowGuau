@@ -63,7 +63,7 @@ public class Registro extends AppCompatActivity {
     TextView lat, lon;
     Button btn_registrar;
     Button calc;
-    ProgressBar progressBar;
+
     Usuario usuario;
     Spinner spine;
     //FireBase Realdatabase
@@ -92,7 +92,7 @@ public class Registro extends AppCompatActivity {
         txtContraseña = findViewById(R.id.txt_contrasena);
         txtConfirmarContraseña = findViewById(R.id.txt_confirmcontr);
         btn_registrar = findViewById(R.id.btnregistr);
-        progressBar = findViewById(R.id.progressBar1);
+
         txtnombre = findViewById(R.id.txt_nombre);
         txtedad = findViewById(R.id.txt_edad);
         txtdireccion = findViewById(R.id.txt_direcccion);
@@ -159,14 +159,14 @@ public class Registro extends AppCompatActivity {
                 if (spine.getSelectedItem().toString().equals("Cliente")) {
 
 
-                    progressBar.setVisibility(view.VISIBLE);
+
                     if (password.equals(confPassword)) {
                         //AUTENTICACION
                         firebaseAuth.createUserWithEmailAndPassword(email, password)
                                 .addOnCompleteListener(Registro.this, new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
-                                        progressBar.setVisibility(View.GONE);
+
                                         if (task.isSuccessful()) {
                                             userid = task.getResult().getUser().getUid();
                                             //STORAGE
@@ -191,7 +191,7 @@ public class Registro extends AppCompatActivity {
                                             myRef = database.getReference(PATHUSER + userid);
                                             myRef.setValue(usuario);
 
-                                            firebaseAuth.signOut();
+                                         //   firebaseAuth.signOut();
 
                                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                             Toast.makeText(Registro.this, "Registrad@", Toast.LENGTH_SHORT).show();
