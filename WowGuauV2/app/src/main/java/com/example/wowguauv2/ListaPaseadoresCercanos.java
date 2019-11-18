@@ -1,12 +1,8 @@
 package com.example.wowguauv2;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
+import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -15,13 +11,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
@@ -29,18 +36,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class ListaPaseadoresCercanos extends AppCompatActivity {
 
     public static final String PATH_PASEADOR = "user/paseador/";
     public static final int LOCATION = 7;
     double RADIUS_OF_EARTH_KM = 6371;
+    public static final int REQUEST_CHECK_SETTINGS = 9;
+    public static final int RESULT_OK = 9;
     private FusedLocationProviderClient mFusedLocation;
     public double miLatitud;
     public double miLonguitud;
@@ -55,14 +61,13 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        Log.d("wqe", "1");
         setContentView(R.layout.activity_lista_paseadores_cercanos);
         ListView list_paseador = findViewById(R.id.listpaseador);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, distPaseador);
         list_paseador.setAdapter(adapter);
         mLocationRequest = createLocationRequest();
-
 
         askPermission();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -74,6 +79,38 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
             Toast.makeText(this, "Permiso de localización aceptado!", Toast.LENGTH_LONG).show();
 
             mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
+            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addAllLocationRequests(Collections.singleton(mLocationRequest));
+            SettingsClient client = LocationServices.getSettingsClient(this);
+            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+
+            task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
+                @Override
+                public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+
+                    startLocationUpdates();
+                }
+            }).addOnFailureListener(this, new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    int statusCode = ((ApiException)e).getStatusCode();
+                    switch (statusCode){
+                        case CommonStatusCodes.RESOLUTION_REQUIRED:
+                            try{
+
+                                ResolvableApiException resolvable = (ResolvableApiException) e;
+                                resolvable.startResolutionForResult(ListaPaseadoresCercanos.this, REQUEST_CHECK_SETTINGS);
+
+                            }catch (IntentSender.SendIntentException sendEx){
+
+                            }break;
+                        case LocationSettingsStatusCodes
+                                .SETTINGS_CHANGE_UNAVAILABLE:
+                            break;
+                    }
+                }
+            });
+
             mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
@@ -93,7 +130,7 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
 
     protected LocationRequest createLocationRequest() {
 
-        LocationRequest mLocation = new LocationRequest();
+        LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10000);
         mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -167,8 +204,25 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
     private void startLocationUpdates(){
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            
 
+            mFusedLocation.requestLocationUpdates(mLocationRequest,mLocationCallback,null);
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        switch (requestCode){
+
+            case REQUEST_CHECK_SETTINGS:{
+
+                if(resultCode == RESULT_OK){
+                    startLocationUpdates();
+                }else{
+                    Toast.makeText(this,"Sin acceso a localización, harware deshabilitado", Toast.LENGTH_LONG).show();
+
+                }
+                return;
+            }
         }
     }
 }
