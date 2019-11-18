@@ -8,11 +8,16 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +34,9 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
     public static final String PATH_PASEADOR = "user/paseador/";
     public static final int LOCATION = 7;
     double RADIUS_OF_EARTH_KM = 6371;
+    private FusedLocationProviderClient mFusedLocation;
+    public double miLatitud;
+    public double miLonguitud;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference(PATH_PASEADOR);
     ArrayList<String> distPaseador = new ArrayList<>();
@@ -54,12 +62,26 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
         } else {
 
             Toast.makeText(this, "Permiso de localización aceptado!", Toast.LENGTH_LONG).show();
-            loadUsers(myRef,distPaseador);
+            mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
+            mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+
+                    Log.i("LOCATION","OnSuccess");
+
+                    if(location != null) {
+
+                        miLatitud = location.getLatitude();
+                        miLonguitud = location.getLongitude();
+                        loadUsers(myRef,distPaseador, miLatitud, miLonguitud);
+                    }
+                }
+            });
         }
     }
 
 
-    public void loadUsers(DatabaseReference myRef, final ArrayList distPaseador) {
+    public void loadUsers(DatabaseReference myRef, final ArrayList distPaseador, final double miLatitud, final double miLonguitud) {
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -67,8 +89,15 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
 
                 Usuario paseador = dataSnapshot.getValue(Usuario.class);
                 String nombre = paseador.getNombre();
-                distPaseador.add(nombre);
-                adapter.notifyDataSetChanged();
+                double lat2 = paseador.getLatitud();
+                double long2 = paseador.getLongitud();
+
+                if(distance(lat2,long2, miLatitud,miLonguitud) <= 5){
+
+                    distPaseador.add(nombre);
+                    adapter.notifyDataSetChanged();
+
+                }
             }
 
             @Override
@@ -96,7 +125,7 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 // Show an expanation to the user *asynchronouslyÂ  Â
-                Toast.makeText(this, "Se necesita el permiso para ver los paseadores!", Toast.LENGTH_LONG).show();
+            //    Toast.makeText(this, "Se necesita el permiso para ver los paseadores!", Toast.LENGTH_LONG).show();
             }
             // Request the permission.
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION);
@@ -114,5 +143,4 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
         double result = RADIUS_OF_EARTH_KM * c;
         return Math.round(result*100.0)/100.0;
     }
-
 }

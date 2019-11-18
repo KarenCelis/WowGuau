@@ -29,22 +29,21 @@
         android:layout_height="106dp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.541"
+        app:layout_constraintVertical_bias="0.508"
         app:srcCompat="@drawable/preguntaperro" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="345dp"
-        android:layout_height="373dp"
+        android:layout_width="266dp"
+        android:layout_height="308dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827">
+        app:layout_constraintVertical_bias="0.892">
 
         <LinearLayout
             android:layout_width="match_parent"
