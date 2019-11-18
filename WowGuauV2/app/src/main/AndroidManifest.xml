@@ -37,8 +37,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".PaseoEnCurso"
+            android:label="@string/title_activity_paseo_en_curso"></activity>
+        <activity
             android:name=".ListaPaseadorUbicacion"
-            android:label="@string/title_activity_lista_paseador_ubicacion"></activity>
+            android:label="@string/title_activity_lista_paseador_ubicacion" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
