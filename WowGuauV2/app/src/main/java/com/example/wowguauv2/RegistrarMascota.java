@@ -105,16 +105,17 @@ public class RegistrarMascota extends AppCompatActivity {
                 if(verificarCampos()){
                     myRef = database.getReference(MASCOTAS_PATH);
                     String key = myRef.push().getKey();
+                    myRef = database.getReference(MASCOTAS_PATH+key);
                     Mascota mascota = obtenerMascota();
                     mStorageRef.child(MASCOTAS_PATH + key + "/img").putFile(profile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Log.i("i", "onSuccess: Fotocargada");
+                            Log.i("imagen", "onSuccess: Fotocargada");
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.i("i","onFalure: CargarFoto");
+                            Log.i("imagen","onFalure: CargarFoto");
                         }
                     });
 
