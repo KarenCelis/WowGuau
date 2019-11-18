@@ -125,7 +125,9 @@ public class RegistrarMascota extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Mascota agregada correctamente",Toast.LENGTH_LONG).show();
                         }
                     });
-                    startActivity(new Intent(getApplicationContext(),ListaMascotas.class));
+                    Intent i =  new Intent(getApplicationContext(),PPrincipalCliente.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
                 }
             }
         });

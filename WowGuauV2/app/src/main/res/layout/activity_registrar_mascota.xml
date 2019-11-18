@@ -63,7 +63,7 @@
                 android:layout_width="264dp"
                 android:layout_height="174dp"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/perrogenerico" />
+                app:srcCompat="@drawable/perrogenerico2" />
 
             <Spinner
                 android:id="@+id/spinnerRaza"
