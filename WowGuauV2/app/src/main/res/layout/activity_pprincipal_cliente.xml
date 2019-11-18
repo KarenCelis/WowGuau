@@ -18,7 +18,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.071"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 
     <Button
         android:id="@+id/RegistrarMascota"
@@ -30,7 +32,9 @@
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPaseadorUbicacion"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintVertical_bias="0.115"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 
     <Button
         android:id="@+id/ListaMascotas"
@@ -42,7 +46,9 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RegistrarMascota"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintVertical_bias="0.161"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 
     <Button
         android:id="@+id/CerrarSesion"
@@ -53,7 +59,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ListaMascotas"
-        app:layout_constraintVertical_bias="0.567" />
+        app:layout_constraintVertical_bias="0.567"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 
     <TextView
         android:id="@+id/textView12"
@@ -88,5 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ListaPaseadores"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.071"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

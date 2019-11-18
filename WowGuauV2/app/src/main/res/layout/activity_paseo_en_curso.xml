@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"
         android:text="Solicitar Imagen"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#ffffff" />
+       />
 </FrameLayout>
