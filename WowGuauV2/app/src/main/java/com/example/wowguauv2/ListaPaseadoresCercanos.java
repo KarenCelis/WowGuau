@@ -82,12 +82,25 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addAllLocationRequests(Collections.singleton(mLocationRequest));
             SettingsClient client = LocationServices.getSettingsClient(this);
             Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-
+            Log.d("koko", "onCreate: ");
+            mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    Log.i("LOCATION","OnSuccess");
+                    if(location != null) {
+                        Log.d("koko", "onSuccess3: ");
+                        miLatitud = location.getLatitude();
+                        miLonguitud = location.getLongitude();
+                        loadUsers(myRef,distPaseador, miLatitud, miLonguitud);
+                    }
+                }
+            });
+            Log.d("koko", "onCreate546: ");
             task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
                 @Override
                 public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
 
-                    startLocationUpdates();
+                    //startLocationUpdates();
                 }
             }).addOnFailureListener(this, new OnFailureListener() {
                 @Override
@@ -110,21 +123,8 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
                     }
                 }
             });
+            Log.d("koko", "onCreate2: ");
 
-            mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-
-                    Log.i("LOCATION","OnSuccess");
-
-                    if(location != null) {
-
-                        miLatitud = location.getLatitude();
-                        miLonguitud = location.getLongitude();
-                        loadUsers(myRef,distPaseador, miLatitud, miLonguitud);
-                    }
-                }
-            });
         }
     }
 
