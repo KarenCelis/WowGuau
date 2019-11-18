@@ -25,6 +25,7 @@
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Seleccione una imagen de perfil" />
