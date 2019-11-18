@@ -239,7 +239,7 @@ public class Registro extends AppCompatActivity {
             pickImage.setType("image/*");
             startActivityForResult(pickImage, IMAGE_PICKER_REQUEST2);
         } else {
-            Toast.makeText(this, "Sin acceso a almacenamietno", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Sin acceso al almacenamietno", Toast.LENGTH_LONG).show();
             requestPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE,
                     "Se necesita acceder al almacenamiento", READ_EXTERNAL_STORAGE2);
         }
@@ -322,7 +322,7 @@ public class Registro extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     try {
                         profile = data.getData();
-                        Log.i("holas", "" + profile);
+                       // Log.i("holas", "" + profile);
 
                         final InputStream imageStream = getContentResolver().openInputStream(profile);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);

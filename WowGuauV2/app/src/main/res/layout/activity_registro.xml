@@ -21,6 +21,14 @@
             android:paddingRight="15dp"
             android:paddingBottom="15dp">
 
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Seleccione una imagen de perfil" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -31,7 +39,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.4"
-                    tools:srcCompat="@mipmap/ic_launcher" />
+                    android:scaleType="fitCenter"
+                    tools:srcCompat="@color/colorAccent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,13 +71,13 @@
 
             </LinearLayout>
 
-            <ProgressBar
-                android:id="@+id/progressBar1"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:visibility="gone" />
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Selccione su tipo de usuario" />
 
             <Spinner
                 android:id="@+id/spinner"

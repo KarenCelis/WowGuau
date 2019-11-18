@@ -82,18 +82,18 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Log.i("TAG", "onComplete: " + firebaseAuth.getUid());
+                                    //  Log.i("TAG", "onComplete: " + firebaseAuth.getUid());
                                     myRef = database.getReference("user/client");
                                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
-                                            Log.i("TAG", "onDataChange: " + dataSnapshot);
+                                            //Log.i("TAG", "onDataChange: " + dataSnapshot);
                                             myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
                                             if (myUser != null) {
-                                                Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
-                                                String name = myUser.getNombre();
-                                                int age = myUser.getEdad();
-                                                Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
+                                                //Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
+                                                // String name = myUser.getNombre();
+                                                // int age = myUser.getEdad();
+                                                //    Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
                                                 if (myUser.getTipo().equals("Cliente")) {
                                                     startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
                                                 } else {
@@ -106,10 +106,10 @@ public class MainActivity extends AppCompatActivity {
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
                                                         if (myUser != null) {
-                                                            Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
-                                                            String name = myUser.getNombre();
-                                                            int age = myUser.getEdad();
-                                                            Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
+                                                          //  Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
+                                                            //String name = myUser.getNombre();
+                                                            //int age = myUser.getEdad();
+                                                            //  Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
                                                             if (myUser.getTipo().equals("Cliente")) {
                                                                 startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
                                                             } else {
@@ -154,9 +154,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-
-
         updateUI(currentUser);
+
     }
 
     private void updateUI(FirebaseUser currentUser) {
@@ -171,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
                         String name = myUser.getNombre();
                         int age = myUser.getEdad();
-                        Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
                         if (myUser.getTipo().equals("Cliente")) {
                             startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
                         } else {
@@ -187,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                                     Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
                                     String name = myUser.getNombre();
                                     int age = myUser.getEdad();
-                                    Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
                                     if (myUser.getTipo().equals("Cliente")) {
                                         startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
                                     } else {
@@ -215,9 +214,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void btn_RegistrarF(View view) {
-        startActivity(new Intent(getApplicationContext(), Registro.class));
-    }
-
-
+    /**public void btn_RegistrarF(View view) {
+     startActivity(new Intent(getApplicationContext(), Registro.class));
+     }
+     **/
 }
