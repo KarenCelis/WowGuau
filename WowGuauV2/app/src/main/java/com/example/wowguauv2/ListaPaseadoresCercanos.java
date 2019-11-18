@@ -16,8 +16,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ListaPaseadoresCercanos extends AppCompatActivity {
@@ -41,6 +48,8 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
     DatabaseReference myRef = database.getReference(PATH_PASEADOR);
     ArrayList<String> distPaseador = new ArrayList<>();
     ArrayAdapter<String> adapter;
+    private LocationRequest mLocationRequest;
+    private LocationCallback mLocationCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +61,7 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, distPaseador);
         list_paseador.setAdapter(adapter);
+        mLocationRequest = createLocationRequest();
 
 
         askPermission();
@@ -62,6 +72,7 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
         } else {
 
             Toast.makeText(this, "Permiso de localización aceptado!", Toast.LENGTH_LONG).show();
+
             mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
             mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
@@ -80,6 +91,15 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
         }
     }
 
+    protected LocationRequest createLocationRequest() {
+
+        LocationRequest mLocation = new LocationRequest();
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        return mLocationRequest;
+    }
 
     public void loadUsers(DatabaseReference myRef, final ArrayList distPaseador, final double miLatitud, final double miLonguitud) {
 
@@ -142,5 +162,13 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double result = RADIUS_OF_EARTH_KM * c;
         return Math.round(result*100.0)/100.0;
+    }
+
+    private void startLocationUpdates(){
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            
+
+        }
     }
 }
