@@ -92,7 +92,7 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
                 double lat2 = paseador.getLatitud();
                 double long2 = paseador.getLongitud();
 
-                if(distance(lat2,long2, miLatitud,miLonguitud) <= 5){
+                if(distance(lat2,long2, miLatitud,miLonguitud) <= 5.0){
 
                     distPaseador.add(nombre);
                     adapter.notifyDataSetChanged();
