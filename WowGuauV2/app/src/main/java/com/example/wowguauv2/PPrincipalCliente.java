@@ -17,7 +17,8 @@ Button registrarM;
 Button listaM;
 Button listaP;
 Button listaPUbicacion;
-Button cerrar;
+Button paseoCurso;
+Boolean existenPaseos=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +26,13 @@ Button cerrar;
         registrarM=findViewById(R.id.RegistrarMascota);
         listaM=findViewById(R.id.ListaMascotas);
         listaP=findViewById(R.id.ListaPaseadores);
-        cerrar=findViewById(R.id.CerrarSesion);
+        paseoCurso=findViewById(R.id.CerrarSesion);
         listaPUbicacion = findViewById(R.id.btnPaseadorUbicacion);
+if(!existenPaseos){
 
+    paseoCurso.setEnabled(false);
+
+}
         registrarM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,12 +53,12 @@ Button cerrar;
                 startActivity(new Intent(getApplicationContext(),ListaPaseadoresCercanos.class));
             }
         });
-        cerrar.setOnClickListener(new View.OnClickListener() {
+        paseoCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 fAuth.signOut();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(),PaseoEnCurso.class));
             }
         });
 
