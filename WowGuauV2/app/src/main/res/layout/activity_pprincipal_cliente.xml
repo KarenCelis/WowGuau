@@ -9,51 +9,49 @@
 
     <Button
         android:id="@+id/ListaPaseadores"
-        android:layout_width="180dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="32dp"
-        android:text="Lista de Paseadores"
+        android:layout_width="223dp"
+        android:layout_height="51dp"
+        android:text="Paseadores cercanos en 5 km"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.071" />
 
     <Button
         android:id="@+id/RegistrarMascota"
-        android:layout_width="178dp"
-        android:layout_height="46dp"
-        android:text="RegistrarMascota"
+        android:layout_width="231dp"
+        android:layout_height="45dp"
+        android:text="Registrar Mascota"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListaPaseadores"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPaseadorUbicacion"
+        app:layout_constraintVertical_bias="0.115" />
 
     <Button
         android:id="@+id/ListaMascotas"
-        android:layout_width="182dp"
-        android:layout_height="49dp"
-        android:text="ListaMascotas"
-        app:layout_constraintBottom_toTopOf="@+id/CerrarSesion"
+        android:layout_width="233dp"
+        android:layout_height="47dp"
+        android:text="Lista Mascotas"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RegistrarMascota"
-        app:layout_constraintVertical_bias="0.576" />
+        app:layout_constraintVertical_bias="0.161" />
 
     <Button
         android:id="@+id/CerrarSesion"
-        android:layout_width="184dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="32dp"
-        android:text="CerrarSesion"
+        android:layout_width="234dp"
+        android:layout_height="43dp"
+        android:text="Cerrar Sesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.964" />
+        app:layout_constraintTop_toBottomOf="@+id/ListaMascotas"
+        app:layout_constraintVertical_bias="0.567" />
 
     <TextView
         android:id="@+id/textView12"
@@ -62,22 +60,31 @@
         android:text="Menú Principal"
         android:textColor="#4CAF50"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.675" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="275dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="260dp"
+        android:layout_height="147dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.159"
         app:srcCompat="@drawable/perro_tierno" />
+
+    <Button
+        android:id="@+id/btnPaseadorUbicacion"
+        android:layout_width="228dp"
+        android:layout_height="52dp"
+        android:text="Paseadores cercanos a la ubicación"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ListaPaseadores"
+        app:layout_constraintVertical_bias="0.071" />
 </androidx.constraintlayout.widget.ConstraintLayout>

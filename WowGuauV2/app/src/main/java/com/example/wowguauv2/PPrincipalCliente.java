@@ -13,6 +13,7 @@ public class PPrincipalCliente extends AppCompatActivity {
 Button registrarM;
 Button listaM;
 Button listaP;
+Button listaPUbicacion;
 Button cerrar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ Button cerrar;
         listaM=findViewById(R.id.ListaMascotas);
         listaP=findViewById(R.id.ListaPaseadores);
         cerrar=findViewById(R.id.CerrarSesion);
+        listaPUbicacion = findViewById(R.id.btnPaseadorUbicacion);
 
         registrarM.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +51,13 @@ Button cerrar;
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 fAuth.signOut();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
+
+        listaPUbicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ListaPaseadorUbicacion.class));
             }
         });
     }

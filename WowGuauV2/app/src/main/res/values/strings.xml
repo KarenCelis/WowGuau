@@ -16,4 +16,5 @@
     <string name="detalles">Detalles</string>
     <string name="cliente">Cliente</string>
     <string name="mascotas">Mascotas</string>
+    <string name="title_activity_lista_paseador_ubicacion">Map</string>
 </resources>
