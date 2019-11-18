@@ -124,7 +124,10 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), MapaSeleccion.class);
-                startActivityForResult(i, 1);
+                if(txtdireccion.getText().toString()!=null) {
+                    i.putExtra("pos", txtdireccion.getText().toString());
+                    startActivityForResult(i, 1);
+                }
             }
         });
 
@@ -248,7 +251,6 @@ public class Registro extends AppCompatActivity {
     }
 
     ///////////////CAMERA
-
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
