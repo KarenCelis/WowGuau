@@ -24,7 +24,7 @@ Boolean existenPaseos=true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pprincipal_cliente);
         registrarM=findViewById(R.id.RegistrarMascota);
-        listaM=findViewById(R.id.listVMascotas);
+        listaM=findViewById(R.id.ListaMascotas);
         listaP=findViewById(R.id.ListaPaseadores);
         paseoCurso=findViewById(R.id.CerrarSesion);
         listaPUbicacion = findViewById(R.id.btnPaseadorUbicacion);

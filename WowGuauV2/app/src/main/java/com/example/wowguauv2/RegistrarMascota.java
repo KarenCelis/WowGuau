@@ -118,7 +118,6 @@ public class RegistrarMascota extends AppCompatActivity {
                             Log.i("imagen","onFalure: CargarFoto");
                         }
                     });
-
                     mascota.setPathFoto(MASCOTAS_PATH + key + "/img");
                     myRef.setValue(mascota).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
