@@ -30,6 +30,7 @@ public class PaseoEnCurso extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     Button botonseleccion;
     double longitudeGPS, latitudeGPS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,7 @@ public class PaseoEnCurso extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
     //////////////////////PERMISOS
     private void requestPermission(Activity context, String permission, String explanation, int requestId) {
         if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -79,26 +81,5 @@ public class PaseoEnCurso extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    /////////////MAPA SELECCION
-    //Metodo que se acciona cuando seleccion una ubicacion y regresa
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        switch (requestCode) {
-            case 1: {
-                if (resultCode == Activity.RESULT_OK) {
-                    private final LocationListener locationListenerGPS = new LocationListener() {
-                        public void onLocationChanged(Location location) {
-                            longitudeGPS = location.getLongitude();
-                            latitudeGPS = location.getLatitude();
-
-                        }
-                }
-                if (resultCode == Activity.RESULT_CANCELED) {
-                    //Write your code if there's no result
-                }
-                return;
-            }
-        }
-    }
 }
+
