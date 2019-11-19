@@ -1,7 +1,5 @@
 package com.example.wowguauv2;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.app.Activity;
@@ -12,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,30 +18,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class PaseoEnCurso extends FragmentActivity implements OnMapReadyCallback {
+public class VerMapaPaseoEnCurso extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    Button botonseleccion;
-    double longitudeGPS, latitudeGPS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_paseo_en_curso);
-
-        botonseleccion = findViewById(R.id.btnSolicitarPaseo);
+        setContentView(R.layout.activity_ver_mapa_paseo_en_curso);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        botonseleccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), EnviarImagenLocaliza.class));
-            }
-        });
     }
 
 
@@ -64,16 +51,4 @@ public class PaseoEnCurso extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
-
-    //////////////////////PERMISOS
-    private void requestPermission(Activity context, String permission, String explanation, int requestId) {
-        if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(context, permission)) {
-                Toast.makeText(context, explanation, Toast.LENGTH_LONG).show();
-            }
-            ActivityCompat.requestPermissions(context, new String[]{permission}, requestId);
-        }
-    }
-
 }
-
