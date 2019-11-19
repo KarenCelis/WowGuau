@@ -14,8 +14,9 @@
         android:layout_gravity="center"
         android:src="@drawable/paseador" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText6"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
