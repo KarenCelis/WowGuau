@@ -17,6 +17,8 @@
     <string name="cliente">Cliente</string>
     <string name="mascotas">Mascotas</string>
     <string name="title_activity_lista_paseador_ubicacion">Map</string>
+     <string name="title_activity_paseo_en_curso">Map</string>
+
 
     <string-array name="razas">
         <item>Raza...</item>
