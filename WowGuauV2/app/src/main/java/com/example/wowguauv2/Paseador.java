@@ -1,6 +1,7 @@
 package com.example.wowguauv2;
 
 public class Paseador extends Usuario {
+
     private String descripcion;
     private Integer AñosE;
     private String Certificados;
