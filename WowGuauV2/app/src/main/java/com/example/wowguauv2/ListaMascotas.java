@@ -66,6 +66,7 @@ public class ListaMascotas extends AppCompatActivity {
                     Log.i("consulta", "onDataChange: "+m.getNombre());
                     mascotas.add(m);
                     mascotasNombres.add(m.getNombre());
+                    String cambio = "esto es un cambio";
                 }
                 ArrayAdapter<String> adapter =  new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,mascotasNombres);
                 listViewMascotas.setAdapter(adapter);
