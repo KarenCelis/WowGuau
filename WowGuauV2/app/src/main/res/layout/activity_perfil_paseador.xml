@@ -59,7 +59,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSolicitarPaseo"
         android:layout_width="238dp"
         android:layout_height="51dp"
         android:text="SOLICITAR PASEO"

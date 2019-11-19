@@ -41,6 +41,7 @@ public class ListaPaseadoresUbicacion extends AppCompatActivity {
     ArrayList<Paseador> paseadorUb = new ArrayList<>();
     ArrayList<String> nombPaseador = new ArrayList<>();
     ArrayAdapter<String> adapterNomb;
+    Double distClientPas = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,8 @@ public class ListaPaseadoresUbicacion extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intDatos = new Intent(getBaseContext(),PerfilPaseador.class);
+                intDatos.putExtra("paseador",paseadorUb.get(i));
+                intDatos.putExtra("DistanciaClientPas", distClientPas);
                 startActivity(intDatos);
             }
         });
@@ -103,8 +106,9 @@ public class ListaPaseadoresUbicacion extends AppCompatActivity {
                     Paseador paseador = singleSnapshot.getValue(Paseador.class);
                     Double latPasead = paseador.getLatitud();
                     Double longPasead = paseador.getLongitud();
+                    distClientPas = distance(latPasead,longPasead, latDireccion, longDireccion);
 
-                    if(distance(latPasead,longPasead, latDireccion, longDireccion) <= 5.0){
+                    if( distClientPas <= 5.0 && paseador.getEstado() == true ){
 
                         paseadorUb.add(paseador);
                         nombPaseador.add(paseador.getNombre());
