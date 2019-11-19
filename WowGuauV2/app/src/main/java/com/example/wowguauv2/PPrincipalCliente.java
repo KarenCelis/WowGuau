@@ -53,6 +53,7 @@ if(!existenPaseos){
                 startActivity(new Intent(getApplicationContext(),ListaPaseadoresCercanos.class));
             }
         });
+
         paseoCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +66,7 @@ if(!existenPaseos){
         listaPUbicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ListaPaseadorUbicacion.class));
+                startActivity(new Intent(getApplicationContext(), ListaPaseadoresUbicacion.class));
             }
         });
     }

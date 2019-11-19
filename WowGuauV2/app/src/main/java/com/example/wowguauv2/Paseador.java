@@ -13,7 +13,7 @@ public class Paseador extends Usuario {
         Certificados = certificados;
     }
 
-    public Paseador(String descripcion, Integer añosE, String certificados) {
+    public Paseador(String descripcion, Integer añosE, String certificados, boolean estado) {
         this.descripcion = descripcion;
         AñosE = añosE;
         Certificados = certificados;
