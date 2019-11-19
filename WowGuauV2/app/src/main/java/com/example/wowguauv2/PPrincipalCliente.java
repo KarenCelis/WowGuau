@@ -59,7 +59,7 @@ if(!existenPaseos){
             public void onClick(View view) {
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 fAuth.signOut();
-                startActivity(new Intent(getApplicationContext(),PaseoEnCurso.class));
+                startActivity(new Intent(getApplicationContext(),PaseoEnCursoC.class));
             }
         });
 

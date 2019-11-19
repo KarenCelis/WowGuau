@@ -1,4 +1,4 @@
- <resources>
+<resources>
     <string name="app_name">WowGuauV2</string>
     <string name="title_activity_mapa_seleccion">Mapa Seleccion</string>
     <string-array name="Tipo">
@@ -13,11 +13,12 @@
     <string name="menu_paseador">Menú Principal</string>
     <string name="estado">Tu Estado</string>
     <string name="seleccione">Seleccione el cliente</string>
+     <string name="peticion_estado">Para ver las solicitudes active su estado</string>
     <string name="detalles">Detalles</string>
     <string name="cliente">Cliente</string>
     <string name="mascotas">Mascotas</string>
     <string name="title_activity_lista_paseador_ubicacion">Map</string>
-     <string name="title_activity_paseo_en_curso">Map</string>
+    <string name="title_activity_paseo_en_curso">Map</string>
 
 
     <string-array name="razas">
@@ -53,4 +54,6 @@
         <item>Grande</item>
         <item>Extra Grande</item>
     </string-array>
+    <string name="title_activity_ver_mapa_en_curso">Map</string>
+    <string name="title_activity_ver_mapa_paseo_en_curso">Map</string>
 </resources>
