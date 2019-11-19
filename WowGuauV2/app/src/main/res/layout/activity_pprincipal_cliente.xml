@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".PPrincipalCliente">
 
+
+
     <Button
         android:id="@+id/ListaPaseadores"
         android:layout_width="223dp"
@@ -16,7 +18,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.071"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 
     <Button
         android:id="@+id/RegistrarMascota"
@@ -28,10 +32,12 @@
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPaseadorUbicacion"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintVertical_bias="0.115"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 
     <Button
-        android:id="@+id/listVMascotas"
+        android:id="@+id/ListaMascotas"
         android:layout_width="233dp"
         android:layout_height="47dp"
         android:text="Lista Mascotas"
@@ -40,18 +46,22 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RegistrarMascota"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintVertical_bias="0.161"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 
     <Button
         android:id="@+id/CerrarSesion"
         android:layout_width="234dp"
         android:layout_height="43dp"
-        android:text="Cerrar Sesion"
+        android:text="PASEOS EN CURSO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listVMascotas"
-        app:layout_constraintVertical_bias="0.567" />
+        app:layout_constraintTop_toBottomOf="@+id/ListaMascotas"
+        app:layout_constraintVertical_bias="0.567"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 
     <TextView
         android:id="@+id/textView12"
@@ -86,5 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ListaPaseadores"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.071"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

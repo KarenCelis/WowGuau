@@ -1,4 +1,4 @@
-<resources>
+ <resources>
     <string name="app_name">WowGuauV2</string>
     <string name="title_activity_mapa_seleccion">Mapa Seleccion</string>
     <string-array name="Tipo">
@@ -17,6 +17,8 @@
     <string name="cliente">Cliente</string>
     <string name="mascotas">Mascotas</string>
     <string name="title_activity_lista_paseador_ubicacion">Map</string>
+     <string name="title_activity_paseo_en_curso">Map</string>
+
 
     <string-array name="razas">
         <item>Raza...</item>

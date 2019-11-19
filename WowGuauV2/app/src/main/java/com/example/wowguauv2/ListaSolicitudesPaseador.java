@@ -1,5 +1,6 @@
 package com.example.wowguauv2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -31,16 +32,7 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_solicitudes_paseador);
 
-        logout = findViewById(R.id.logout);
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth fAuth = FirebaseAuth.getInstance();
-                fAuth.signOut();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            }
-        });
 
         switchD = (Switch) findViewById(R.id.switch_disponible);
 
@@ -71,18 +63,19 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_layout, menu);
+        return super.onCreateOptionsMenu(menu);
     }
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        int itemClicked = item.getItemId();
-        if(itemClicked == R.id.menuLogOut){
-            //mAuth.signOut();
-            Intent intent = new Intent(ListaSolicitudesPaseador.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==R.id.signOutMenuItd){
+
+            FirebaseAuth.getInstance().signOut();
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
