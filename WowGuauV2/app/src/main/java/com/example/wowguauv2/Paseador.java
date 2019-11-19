@@ -16,6 +16,10 @@ public class Paseador extends Usuario {
         return estado;
     }
 
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public int getPaseosRealizados() {
         return paseosRealizados;
     }
@@ -38,9 +42,6 @@ public class Paseador extends Usuario {
         AñosE = añosE;
         Certificados = certificados;
         this.estado = estado;
-    }
-
-    public Paseador() {
     }
 
     public Paseador(String descripcion, Integer añosE, String certificados, boolean estado) {
@@ -74,11 +75,4 @@ public class Paseador extends Usuario {
         Certificados = certificados;
     }
 
-    public boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 }

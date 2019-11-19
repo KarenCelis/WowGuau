@@ -78,7 +78,9 @@ public class RegistroPaseador extends AppCompatActivity {
                 }
                 //progressBar.setVisibility(view.VISIBLE);
                 paseador = new Paseador(usuario.getNombre(), usuario.getCorreo(), usuario.getEdad(), usuario.getDireccion(), usuario.getLatitud(), usuario.getLongitud(), usuario.getPathFoto(), usuario.getTipo(), description, ages, certificate, false);
-
+                paseador.setEstado(false);
+                paseador.setPaseosRealizados(0);
+                paseador.setCalificacion(0);
                     //AUTENTICACION
                     firebaseAuth.createUserWithEmailAndPassword(usuario.getCorreo(), password)
                             .addOnCompleteListener(RegistroPaseador.this, new OnCompleteListener<AuthResult>() {
