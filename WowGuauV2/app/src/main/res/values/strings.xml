@@ -53,4 +53,6 @@
         <item>Grande</item>
         <item>Extra Grande</item>
     </string-array>
+    <string name="title_activity_ver_mapa_en_curso">Map</string>
+    <string name="title_activity_ver_mapa_paseo_en_curso">Map</string>
 </resources>
