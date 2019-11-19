@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,11 +15,14 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
 
 public class ListaSolicitudesPaseador extends AppCompatActivity {
 
@@ -26,12 +30,15 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
 
     Switch switchD;
     ListView lv1;
+    TextView textoSolicitudes;
     Button logout;
 
     private FirebaseAuth mAuth;
     FirebaseUser user;
     FirebaseDatabase database;
     DatabaseReference myRef;
+
+    Context contexto = this;
 
     String [][] datos = {
             {"Jorge Paredes", "3.00 km"},
@@ -53,22 +60,7 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
 
         switchD = (Switch) findViewById(R.id.switch_disponible);
 
-        switchD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("TAG", "MyClass.getView() — get item number " + user.getUid());
-                myRef = database.getReference(PATH_PASEADORES + user.getUid());
-                if (switchD.isChecked()){
-                    myRef.child("estado").setValue(true);
-                    switchD.setText(getResources().getText(R.string.disponible));
-                    switchD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
-                }
-                else {
-                    myRef.child("estado").setValue(false);
-                    switchD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.rojo));
-                }
-            }
-        });
+        textoSolicitudes = (TextView) findViewById(R.id.textoSolicitudes);
 
         lv1 = (ListView) findViewById(R.id.lv1);
         lv1.setAdapter(new Adaptador(this, datos));
@@ -80,6 +72,40 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        switchD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("TAG", "MyClass.getView() — get item number " + user.getUid());
+                myRef = database.getReference(PATH_PASEADORES + user.getUid());
+                if (switchD.isChecked()){
+                    myRef.child("estado").setValue(true);
+                    mostrarSolicitudes();
+
+                    switchD.setText(getResources().getText(R.string.disponible));
+
+                    switchD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+                }
+                else {
+                    myRef.child("estado").setValue(false);
+                    quitarSolicitudes();
+
+                    switchD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.rojo));
+                }
+            }
+        });
+
+
+    }
+
+    private void quitarSolicitudes() {
+        textoSolicitudes.setText(R.string.peticion_estado);
+        lv1.setAdapter(null);
+    }
+
+    private void mostrarSolicitudes() {
+        textoSolicitudes.setText(R.string.seleccione);
+        lv1.setAdapter(new Adaptador(contexto, datos));
     }
 
     @Override
