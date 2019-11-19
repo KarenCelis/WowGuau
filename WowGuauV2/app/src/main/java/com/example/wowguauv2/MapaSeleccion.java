@@ -62,7 +62,7 @@ public class MapaSeleccion extends FragmentActivity implements OnMapReadyCallbac
             if(!direccion.isEmpty() || direccion!="") {
                 List<Address> direccionesL = mGeocoder.getFromLocationName(direccion,5,lowerLeftLatitude,lowerLeftLongitude,upperRightLatitude,upperRigthLongitude);
                 direccionesAL = new ArrayList<>(direccionesL);
-            }else {Toast.makeText(this, "Direcciónno encontrada", Toast.LENGTH_SHORT).show();}
+            }else {Toast.makeText(this, "Dirección no encontrada", Toast.LENGTH_SHORT).show();}
         } catch (IOException e) {
             e.printStackTrace();
         }
