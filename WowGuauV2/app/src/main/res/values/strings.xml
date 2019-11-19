@@ -1,4 +1,4 @@
-<resources>
+ <resources>
     <string name="app_name">WowGuauV2</string>
     <string name="title_activity_mapa_seleccion">Mapa Seleccion</string>
     <string-array name="Tipo">
@@ -17,4 +17,40 @@
     <string name="cliente">Cliente</string>
     <string name="mascotas">Mascotas</string>
     <string name="title_activity_lista_paseador_ubicacion">Map</string>
+     <string name="title_activity_paseo_en_curso">Map</string>
+
+
+    <string-array name="razas">
+        <item>Raza...</item>
+        <item>Labrador</item>
+        <item>Pastor Alemán</item>
+        <item>Beagle</item>
+        <item>Yorkshire Terrier</item>
+        <item>Bóxer</item>
+        <item>Poodle</item>
+        <item>Husky Siberiano</item>
+        <item>Golden Retriver</item>
+        <item>Rottweiler</item>
+        <item>Samoyedo</item>
+        <item>Pitbull</item>
+        <item>Chow Chow</item>
+        <item>Dálmata</item>
+        <item>Collie</item>
+        <item>Pug</item>
+        <item>BullDog Francés</item>
+        <item>Schnauzer</item>
+        <item>Cocker</item>
+        <item>Corgi</item>
+        <item>Criollo</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="tamañps">
+        <item>Tamaño...</item>
+        <item>Extra Pequeño</item>
+        <item>Pequeño</item>
+        <item>Mediano</item>
+        <item>Grande</item>
+        <item>Extra Grande</item>
+    </string-array>
 </resources>

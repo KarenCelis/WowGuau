@@ -2,6 +2,8 @@ package com.example.wowguauv2;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,7 +25,18 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class MapaSeleccion extends FragmentActivity implements OnMapReadyCallback {
+
+    public static final double lowerLeftLatitude= 4.468267;
+    public static final double lowerLeftLongitude= -74.179923;
+    public static final double upperRightLatitude= 4.828413;
+    public static final double upperRigthLongitude= -73.990422;
+    int dirSele = 0;
 
     MapView mMapView;
     View v;
@@ -31,6 +44,9 @@ public class MapaSeleccion extends FragmentActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private Marker lastmarker;
     private TextView latlong;
+    Geocoder mGeocoder;
+    private String direccion;
+    ArrayList<Address> direccionesAL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +55,18 @@ public class MapaSeleccion extends FragmentActivity implements OnMapReadyCallbac
 
         latlong = findViewById(R.id.latlong);
         botonseleccion = findViewById(R.id.Seleccionarbutton);
+        mGeocoder = new Geocoder(getBaseContext());
+        direccion = getIntent().getStringExtra("pos");
+
+        try {
+            if(!direccion.isEmpty() || direccion!="") {
+                List<Address> direccionesL = mGeocoder.getFromLocationName(direccion,5,lowerLeftLatitude,lowerLeftLongitude,upperRightLatitude,upperRigthLongitude);
+                direccionesAL = new ArrayList<>(direccionesL);
+            }else {Toast.makeText(this, "Direcciónno encontrada", Toast.LENGTH_SHORT).show();}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         MapsInitializer.initialize(this);
         mMapView = findViewById(R.id.map);
@@ -46,7 +74,7 @@ public class MapaSeleccion extends FragmentActivity implements OnMapReadyCallbac
 
         mMapView.getMapAsync(this);
 
-        lastmarker=null;
+        //lastmarker=null;
 
         botonseleccion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,14 +153,26 @@ public class MapaSeleccion extends FragmentActivity implements OnMapReadyCallbac
         mMap.setMapStyle(MapStyleOptions
                 .loadRawResourceStyle(this, R.raw.mapa));
 
-        LatLng location = new LatLng(4.643967681564348, -74.09724276512863);
+
+        if(direccionesAL!=null && !direccionesAL.isEmpty()){
+
+            if(dirSele>=0&&dirSele<direccionesAL.size()){
+                Address direccion_actual = direccionesAL.get(dirSele);
+                LatLng posLL = new LatLng(direccion_actual.getLatitude(), direccion_actual.getLongitude());
+                lastmarker = mMap.addMarker(new MarkerOptions().position(posLL).title(direccion_actual.getFeatureName()).icon(BitmapDescriptorFactory.fromResource(R.drawable.placeholder322)));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posLL, 12));
+                latlong.setText("Lat = "+posLL.latitude+" Long = "+posLL.longitude);
+            }
+
+        }
+
+       /* LatLng location = new LatLng(4.643967681564348, -74.09724276512863);
         lastmarker = mMap.addMarker(new MarkerOptions().position(location).title("Aqui"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12));
 
         lastmarker.remove();
 
-        lastmarker = null;
-
+        lastmarker = null;*/
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
