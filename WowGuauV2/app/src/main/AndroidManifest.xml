@@ -55,7 +55,9 @@
         <activity android:name=".ListaSolicitudesPaseador" />
         <activity android:name=".DetalleySolicitudPaseador" />
         <activity android:name=".ListaPaseadoresCercanos" />
+        <activity android:name=".ListaPaseadoresUbicacion"/>
         <activity android:name=".ListaMascotas" />
+        <activity android:name=".PerfilPaseador" />
         <activity android:name=".RegistrarMascota" />
         <activity android:name=".PPrincipalCliente" />
         <activity android:name=".RegistroPaseador" />

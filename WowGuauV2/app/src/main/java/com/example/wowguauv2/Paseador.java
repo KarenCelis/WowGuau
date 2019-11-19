@@ -12,6 +12,9 @@ public class Paseador extends Usuario {
         Certificados = certificados;
     }
 
+    public Paseador() {
+    }
+
     public Paseador(String descripcion, Integer añosE, String certificados) {
         this.descripcion = descripcion;
         AñosE = añosE;

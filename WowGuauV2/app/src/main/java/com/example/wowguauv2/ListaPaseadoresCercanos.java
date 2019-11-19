@@ -59,7 +59,6 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
