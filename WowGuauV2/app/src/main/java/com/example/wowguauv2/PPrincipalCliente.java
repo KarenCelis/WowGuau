@@ -20,7 +20,7 @@ Button cerrar;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pprincipal_cliente);
         registrarM=findViewById(R.id.RegistrarMascota);
-        listaM=findViewById(R.id.ListaMascotas);
+        listaM=findViewById(R.id.listVMascotas);
         listaP=findViewById(R.id.ListaPaseadores);
         cerrar=findViewById(R.id.CerrarSesion);
         listaPUbicacion = findViewById(R.id.btnPaseadorUbicacion);

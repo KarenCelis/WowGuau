@@ -135,24 +135,14 @@ public class RegistrarMascota extends AppCompatActivity {
     }
 
     public Mascota obtenerMascota(){
-        String nombre, raza, recomendaciones, duenoUid,pathFoto;
+        String nombre, raza, recomendaciones, duenoUid,pathFoto,tam;
         int edad;
-        Mascota.Size tam=null;
+
 
         nombre = edtxtNombre.getText().toString();
         recomendaciones = edttxtRecomendaciones.getText().toString();
         raza = spinnerRaza.getSelectedItem().toString();
-        switch (spinnerTam.getSelectedItemPosition()){
-            case 1: tam = Mascota.Size.XSmall;
-                break;
-            case 2: tam = Mascota.Size.Small;
-                break;
-            case 3: tam = Mascota.Size.Medium;
-                break;
-            case 4: tam = Mascota.Size.Large;
-                break;
-            case 5: tam = Mascota.Size.XLarge;
-        }
+        tam = spinnerTam.getSelectedItem().toString();
         edad = Integer.parseInt(edttxtEdad.getText().toString());
         duenoUid = user.getUid();
         return  new Mascota(nombre,raza,edad,tam,duenoUid,"",recomendaciones);

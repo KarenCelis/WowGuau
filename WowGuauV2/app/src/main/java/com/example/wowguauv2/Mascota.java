@@ -1,7 +1,9 @@
 package com.example.wowguauv2;
 
 
-public class Mascota {
+import java.io.Serializable;
+
+public class Mascota implements Serializable {
 
     public enum Size{
         XSmall,
@@ -14,12 +16,15 @@ public class Mascota {
     private String nombre;
     private String raza;
     private int edad;
-    private Size tamano;
+    private String tamano;
     private String duenoUid;
     private String pathFoto;
     private String recomendaciones;
 
-    public Mascota(String nombre, String raza, int edad, Size tamano, String duenoUid, String pathFoto, String recomendaciones) {
+    public Mascota() {
+    }
+
+    public Mascota(String nombre, String raza, int edad, String tamano, String duenoUid, String pathFoto, String recomendaciones) {
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
@@ -61,11 +66,11 @@ public class Mascota {
         this.edad = edad;
     }
 
-    public Size getTamano() {
+    public String getTamano() {
         return tamano;
     }
 
-    public void setTamano(Size tamano) {
+    public void setTamano(String tamano) {
         this.tamano = tamano;
     }
 

@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.115" />
 
     <Button
-        android:id="@+id/ListaMascotas"
+        android:id="@+id/listVMascotas"
         android:layout_width="233dp"
         android:layout_height="47dp"
         android:text="Lista Mascotas"
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListaMascotas"
+        app:layout_constraintTop_toBottomOf="@+id/listVMascotas"
         app:layout_constraintVertical_bias="0.567" />
 
     <TextView
