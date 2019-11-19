@@ -66,7 +66,7 @@ if(!existenPaseos){
         listaPUbicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ListaPaseadorUbicacion.class));
+                startActivity(new Intent(getApplicationContext(), ListaPaseadoresUbicacion.class));
             }
         });
     }
