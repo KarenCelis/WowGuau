@@ -158,18 +158,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
             myRef = database.getReference("user/client");
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.i("TAG", "onDataChange: " + dataSnapshot);
+                  //  Log.i("TAG", "onDataChange: " + dataSnapshot);
                     myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
                     if (myUser != null) {
-                        Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
-                        String name = myUser.getNombre();
-                        int age = myUser.getEdad();
+                       // Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
+                      //  String name = myUser.getNombre();
+                       // int age = myUser.getEdad();
                         //  Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
                         if (myUser.getTipo().equals("Cliente")) {
                             startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));
@@ -183,9 +184,9 @@ public class MainActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 myUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(Usuario.class);
                                 if (myUser != null) {
-                                    Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
-                                    String name = myUser.getNombre();
-                                    int age = myUser.getEdad();
+                                    //Log.i("TAG", "Encontró usuario: " + myUser.getCorreo());
+                                   // String name = myUser.getNombre();
+                                   // int age = myUser.getEdad();
                                     //Toast.makeText(getApplicationContext(), name + ":" + age, Toast.LENGTH_SHORT).show();
                                     if (myUser.getTipo().equals("Cliente")) {
                                         startActivity(new Intent(getApplicationContext(), PPrincipalCliente.class));

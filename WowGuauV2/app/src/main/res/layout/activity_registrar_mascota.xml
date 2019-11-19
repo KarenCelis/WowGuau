@@ -1,15 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".RegistrarMascota">
 
-    <Button
-        android:id="@+id/sigM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sigM" />
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Registro Peludo"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edttNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnGaleria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/gallery" />
+
+                <ImageButton
+                    android:id="@+id/btnCamara"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/camera" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgVMascota"
+                android:layout_width="264dp"
+                android:layout_height="174dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/perrogenerico" />
+
+            <Spinner
+                android:id="@+id/spinnerRaza"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:entries="@array/razas" />
+
+            <Spinner
+                android:id="@+id/spinnerTamano"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:entries="@array/tamañps" />
+
+            <EditText
+                android:id="@+id/edttxtEdad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Edad (años)"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/edttxtRecomendaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Recomendaciones"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/btnRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar Mascota" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

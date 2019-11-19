@@ -124,7 +124,10 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), MapaSeleccion.class);
-                startActivityForResult(i, 1);
+                if(txtdireccion.getText().toString()!=null) {
+                    i.putExtra("pos", txtdireccion.getText().toString());
+                    startActivityForResult(i, 1);
+                }
             }
         });
 
@@ -157,13 +160,9 @@ public class Registro extends AppCompatActivity {
 
                 usuario = new Usuario(name, email, age, address, Double.valueOf(lat.getText().toString()), Double.valueOf((String) lon.getText()), "Nofoto", spine.getSelectedItem().toString());
                 if (spine.getSelectedItem().toString().equals("Cliente")) {
-
-
-
                     if (password.equals(confPassword)) {
                         //AUTENTICACION
-                        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                                .addOnCompleteListener(Registro.this, new OnCompleteListener<AuthResult>() {
+                        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Registro.this, new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -173,14 +172,12 @@ public class Registro extends AppCompatActivity {
                                             mStorageRef = FirebaseStorage.getInstance().getReference();
                                             StorageReference userRef = mStorageRef.child("users/" + userid + "/profile");
 
-                                            userRef.putFile(profile)
-                                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                            userRef.putFile(profile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                         @Override
                                                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                                             Log.i("TAG", "Exito subida de imagen");
                                                         }
-                                                    })
-                                                    .addOnFailureListener(new OnFailureListener() {
+                                                    }).addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception exception) {
                                                             Log.e("TAG", "Fallo subida de imagen");
@@ -248,7 +245,6 @@ public class Registro extends AppCompatActivity {
     }
 
     ///////////////CAMERA
-
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
