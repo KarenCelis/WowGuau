@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EnviarImagenLocaliza"></activity>
+        <activity android:name=".MensajesPaseador"></activity>
+        <activity android:name=".EnviarImagenLocaliza" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,7 +39,6 @@
         <activity
             android:name=".PaseoEnCurso"
             android:label="@string/title_activity_paseo_en_curso" />
-
         <activity
             android:name=".ListaPaseadorUbicacion"
             android:label="@string/title_activity_lista_paseador_ubicacion" />
@@ -56,7 +56,7 @@
         <activity android:name=".ListaSolicitudesPaseador" />
         <activity android:name=".DetalleySolicitudPaseador" />
         <activity android:name=".ListaPaseadoresCercanos" />
-        <activity android:name=".ListaPaseadoresUbicacion"/>
+        <activity android:name=".ListaPaseadoresUbicacion" />
         <activity android:name=".ListaMascotas" />
         <activity android:name=".PerfilPaseador" />
         <activity android:name=".RegistrarMascota" />
