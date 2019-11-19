@@ -120,7 +120,6 @@ public class PerfilPaseador extends AppCompatActivity {
         date.setMinutes(minutes);
         paseo.setInicio(date);
         Log.i("PASEO", "crearPaseo: "+date);
-        paseo.setFin(null);
         return paseo;
     }
 
