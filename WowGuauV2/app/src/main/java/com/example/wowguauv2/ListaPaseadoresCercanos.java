@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -57,14 +59,13 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d("wqe", "1");
         setContentView(R.layout.activity_lista_paseadores_cercanos);
-        ListView list_paseador = findViewById(R.id.listpaseador);
-
+        final ListView list_paseador = findViewById(R.id.listpaseador);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, distPaseador);
         list_paseador.setAdapter(adapter);
         mLocationRequest = createLocationRequest();
@@ -88,14 +89,13 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
                 public void onSuccess(Location location) {
                     Log.i("LOCATION","OnSuccess");
                     if(location != null) {
-                        Log.d("koko", "onSuccess3: ");
                         miLatitud = location.getLatitude();
                         miLonguitud = location.getLongitude();
-                        loadUsers(myRef,distPaseador, miLatitud, miLonguitud);
+                        loadUsers(myRef,distPaseador, miLatitud, miLonguitud,list_paseador);
                     }
                 }
             });
-            Log.d("koko", "onCreate546: ");
+
             task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
                 @Override
                 public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
@@ -123,8 +123,6 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
                     }
                 }
             });
-            Log.d("koko", "onCreate2: ");
-
         }
     }
 
@@ -138,22 +136,21 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
         return mLocationRequest;
     }
 
-    public void loadUsers(DatabaseReference myRef, final ArrayList distPaseador, final double miLatitud, final double miLonguitud) {
+    public void loadUsers(DatabaseReference myRef, final ArrayList distPaseador, final double miLatitud, final double miLonguitud,final ListView list_paseador) {
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 Usuario paseador = dataSnapshot.getValue(Usuario.class);
-                String nombre = paseador.getNombre();
+                final String nombre = paseador.getNombre();
                 double lat2 = paseador.getLatitud();
                 double long2 = paseador.getLongitud();
 
                 if(distance(lat2,long2, miLatitud,miLonguitud) <= 5.0){
 
-                    distPaseador.add(nombre);
-                    adapter.notifyDataSetChanged();
-
+                        distPaseador.add(nombre);
+                        adapter.notifyDataSetChanged();
                 }
             }
 
