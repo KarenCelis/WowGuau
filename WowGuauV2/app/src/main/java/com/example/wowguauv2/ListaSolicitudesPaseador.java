@@ -110,14 +110,15 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                 myRef = database.getReference(PATH_PASEADORES + user.getUid());
                 if (switchD.isChecked()){
                     myRef.child("estado").setValue(true);
+                    startLocationUpdates();
                     mostrarSolicitudes();
-
                     switchD.setText(getResources().getText(R.string.disponible));
 
                     switchD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
                 }
                 else {
                     myRef.child("estado").setValue(false);
+                    stopLocationUpdates();
                     quitarSolicitudes();
 
                     switchD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.rojo));
@@ -180,11 +181,6 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                         Log.i("TAG", "Localizacion " + lat + "   " + lon);
                         myRef.child("latitud").setValue(lat);
                         myRef.child("longitud").setValue(lon);
-                        //latitud.setText("Latitud:  " + lat);
-                        //longitud.setText("Longitud:  " + lon);
-                        //altitud.setText("Altitud:  " + location.getAltitude());
-                        //double dist = distance(lat, lon, lat2, lon2);
-                        //distancia.setText("Distancia a la Plaza de Bolivar:  " + dist + " klm");
                     }
                 }
             });
@@ -203,11 +199,6 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                     Log.i("TAG", "Localizacion " + lat + "   " + lon);
                     myRef.child("latitud").setValue(lat);
                     myRef.child("longitud").setValue(lon);
-                    //latitud.setText("Latitud: " + String.valueOf(lat));
-                    //longitud.setText("Longitud: " + String.valueOf(lon));
-                    //altitud.setText("Altitud: " + String.valueOf(location.getAltitude()));
-                    //double dist = distance(lat, lon, lat2, lon2);
-                    //distancia.setText("Distancia a la Plaza de Bolivar:  " + dist + " klm");
                 }
             }
         };
@@ -332,11 +323,6 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                                 Log.i("TAG", "Localizacion " + lat + "   " + lon);
                                 myRef.child("latitud").setValue(lat);
                                 myRef.child("longitud").setValue(lon);
-                                //latitud.setText("Latitud:  " + lat);
-                                //longitud.setText("Longitud:  " + lon);
-                                //altitud.setText("Altitud:  " + location.getAltitude());
-                                //double dist = distance(lat, lon, lat2, lon2);
-                                //distancia.setText("Distancia a la Plaza de Bolivar:  " + dist + " klm");
                             }
                         }
                     });
