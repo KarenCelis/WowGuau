@@ -53,14 +53,6 @@ if(!existenPaseos){
                 startActivity(new Intent(getApplicationContext(),ListaPaseadoresCercanos.class));
             }
         });
-        paseoCurso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth fAuth = FirebaseAuth.getInstance();
-                fAuth.signOut();
-                startActivity(new Intent(getApplicationContext(),PaseoEnCurso.class));
-            }
-        });
 
         listaPUbicacion.setOnClickListener(new View.OnClickListener() {
             @Override
