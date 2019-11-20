@@ -31,29 +31,37 @@
 
             </ListView>
 
-            <ImageView
-                android:id="@+id/imgvPaseador"
-                android:layout_width="138dp"
-                android:layout_height="119dp"
-                android:layout_gravity="center"
-                android:foregroundGravity="center"
-                app:srcCompat="@drawable/paseador" />
-
-            <TextView
-                android:id="@+id/txtvNomPaseador"
+            <LinearLayout
+                android:id="@+id/Linear0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Nombre Paseador" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtvCalificacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Calificación" />
+                <ImageView
+                    android:id="@+id/imgvPaseador"
+                    android:layout_width="138dp"
+                    android:layout_height="119dp"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    app:srcCompat="@drawable/paseador" />
+
+                <TextView
+                    android:id="@+id/txtvNomPaseador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Nombre Paseador" />
+
+                <TextView
+                    android:id="@+id/txtvCalificacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Calificación" />
+            </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/Linear1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -83,6 +91,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/Linear2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -100,9 +109,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Calificar"
                     android:background="@drawable/button_rounded"
-                    android:textColor="#ffffff"/>
+                    android:text="Calificar"
+                    android:textColor="#ffffff" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

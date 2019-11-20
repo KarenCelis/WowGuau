@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,8 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +44,7 @@ public class CalificarPaseador extends AppCompatActivity {
     TextView txtvNomPaseador, txtvCalificacion, txtvNombreMascota, txtvFechaPaseo;
     EditText edttCalificar;
     Button btnCalificar;
+    LinearLayout linear1,linear2,linear0;
 
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -70,25 +74,59 @@ public class CalificarPaseador extends AppCompatActivity {
         txtvFechaPaseo = findViewById(R.id.txtvFechaPaseo);
         edttCalificar = findViewById(R.id.edttCalificacion);
         btnCalificar = findViewById(R.id.btnCalificar);
+        linear1 = findViewById(R.id.Linear1);
+        linear2 = findViewById(R.id.Linear2);
+        linear0 = findViewById(R.id.Linear0);
+
 
         paseos = new ArrayList<Paseo>();
         paseadores = new ArrayList<Paseador>();
         paseadoresS = new ArrayList<String>();
 
         loadPaseos();
+        mostrarDetalle();
 
         listvPaseos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.i("calificar", "onItemClick: "+listvPaseos.getItemAtPosition(i).toString());
                 cargarDetalle(listvPaseos.getItemAtPosition(i).toString());
-                if(!edttCalificar.getText().toString().isEmpty()){
-                    Query q = database.getReference(PATH_PASEADOR).orderByChild("correo").equalTo(paseador.getCorreo());
-                }
-
+                mostrarDetalle();
             }
         });
 
+        btnCalificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!edttCalificar.getText().toString().isEmpty() && paseador!=null){
+
+                    float calificacion = paseador.getCalificacion() + (Integer.parseInt(edttCalificar.getText().toString())/(paseador.getPaseosRealizados()+1));
+                    database.getReference(PATH_PASEADOR).child(paseador.getUid()).child("calificacion").setValue(calificacion).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getApplicationContext(),"Calificación realizada",Toast.LENGTH_LONG).show();
+                            paseadoresS.remove(paseador.getNombre());
+                            ArrayAdapter<String> adapter =  new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,paseadoresS);
+                            listvPaseos.setAdapter(adapter);
+                            ocultarDetalle();
+                        }
+                    });
+                }
+            }
+        });
+
+    }
+
+    private void ocultarDetalle(){
+        linear0.setVisibility(View.INVISIBLE);
+        linear1.setVisibility(View.INVISIBLE);
+        linear2.setVisibility(View.INVISIBLE);
+    }
+
+    private void mostrarDetalle(){
+        linear0.setVisibility(View.VISIBLE);
+        linear1.setVisibility(View.VISIBLE);
+        linear2.setVisibility(View.VISIBLE);
     }
 
     private void cargarDetalle(String nombrePas) {
@@ -97,7 +135,7 @@ public class CalificarPaseador extends AppCompatActivity {
             if(p.getNombre().equals(nombrePas)){
                 paseador = p;
                 txtvNomPaseador.setText(p.getNombre());
-                txtvCalificacion.setText(String.valueOf(p.getCalificacion()));
+                txtvCalificacion.setText(String.valueOf(p.getCalificacion())+" ★");
                 mStorageRef = mStorageRef.child(p.getPathFoto());
                 mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
@@ -109,7 +147,7 @@ public class CalificarPaseador extends AppCompatActivity {
 
 
                 for(Paseo pa : paseos){
-                    if(pa.getPaseadorUid().equals(p.getCorreo())){
+                    if(pa.getPaseadorUid().equals(p.getUid())){
                         txtvNombreMascota.setText(pa.getNombreMascota());
                         txtvFechaPaseo.setText(pa.getInicio().toString());
 
@@ -154,7 +192,7 @@ public class CalificarPaseador extends AppCompatActivity {
                     Paseo p = dsh.getValue(Paseo.class);
                     if(!p.isCalificado()&&!p.isActivo()&&p.isAceptado()){
                         paseos.add(p);
-                        Query q2 = database.getReference(PATH_PASEADOR).orderByChild("correo").equalTo(p.getPaseadorUid());
+                        Query q2 = database.getReference(PATH_PASEADOR).orderByChild("uid").equalTo(p.getPaseadorUid());
                         q2.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -174,6 +212,7 @@ public class CalificarPaseador extends AppCompatActivity {
                 }
                 ArrayAdapter<String> adapter =  new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,paseadoresS);
                 listvPaseos.setAdapter(adapter);
+                listvPaseos.setVisibility(View.VISIBLE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
