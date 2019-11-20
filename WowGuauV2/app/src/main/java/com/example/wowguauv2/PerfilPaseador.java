@@ -63,7 +63,7 @@ public class PerfilPaseador extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombre);
         txtExperiencia = findViewById(R.id.txtExperiencia);
         txtAniosExp = findViewById(R.id.txtAniosExp);
-        txtDistancia = findViewById(R.id.txtCalificacion);
+        txtDistancia = findViewById(R.id.txtDistancia);
         txtCalificacion = findViewById(R.id.txtCalificacion);
         btnSolicitarPaseo = findViewById(R.id.btnSolicitarPaseo);
         spinnerMascotas = findViewById(R.id.spinnerMascotas);
@@ -77,7 +77,8 @@ public class PerfilPaseador extends AppCompatActivity {
         txtNombre.setText("Nombre: " + p.getNombre());
         txtExperiencia.setText("Experiencia del paseador: " + p.getDescripcion());
         txtAniosExp.setText("Años de experiencia: " + p.getAñosE());
-        txtDistancia.setText("Distancia: "+ distancia);
+        txtDistancia.setText("Distancia: " + distancia + " km");
+        txtCalificacion.setText("Calificación: " + p.getCalificacion());
 
         btnSolicitarPaseo.setOnClickListener(new View.OnClickListener() {
             @Override
