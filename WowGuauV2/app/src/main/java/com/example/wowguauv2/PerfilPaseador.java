@@ -22,10 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,7 +104,7 @@ public class PerfilPaseador extends AppCompatActivity {
         paseo.setAceptado(false);
         paseo.setActivo(true);
         paseo.setClienteUid(user.getUid());
-        paseo.setPaseadorCorreo(p.getCorreo());
+        paseo.setPaseadorUid(p.getCorreo());
         paseo.setNombreMascota(spinnerMascotas.getSelectedItem().toString());
         paseo.setLatPaseador(0.0);
         paseo.setLongPaseador(0.0);

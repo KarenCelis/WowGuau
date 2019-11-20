@@ -185,6 +185,7 @@ public class Registro extends AppCompatActivity {
                                                     });
                                             //DATAUSER
                                             usuario.setPathFoto("users/" + userid + "/profile");
+                                            usuario.setUid(userid);
                                             myRef = database.getReference(PATHUSER + userid);
                                             myRef.setValue(usuario);
 
