@@ -159,6 +159,7 @@ public class PerfilPaseador extends AppCompatActivity {
     }
 
     private Paseo crearPaseo() {
+        Log.d(TAG, "crearPaseo: " + p);
         Paseo paseo = new Paseo();
         paseo.setCalificado(false);
         paseo.setAceptado(false);
