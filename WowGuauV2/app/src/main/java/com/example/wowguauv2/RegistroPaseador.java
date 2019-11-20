@@ -108,6 +108,7 @@ public class RegistroPaseador extends AppCompatActivity {
                                                 });
                                         //DATAUSER
                                         paseador.setPathFoto("users/" + userid + "/profile");
+                                        paseador.setUid(userid);
                                         myRef = database.getReference(PATHPASEADOR + userid);
                                         myRef.setValue(paseador);
 

@@ -41,14 +41,19 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
 public class ListaSolicitudesPaseador extends AppCompatActivity {
 
     public static final String PATH_PASEADORES = "user/paseador/";
+    public static final String PATH_CLIENTES = "user/client/";
+    public static final String PATH_PASEOS = "paseos/";
 
     Switch switchD;
     ListView lv1;
@@ -69,13 +74,16 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
     Location mCurrentLocation;
+    double RADIUS_OF_EARTH_KM = 6371.01;
+    double lat2, lon2, distancia;
 
     Context contexto = this;
 
-    String [][] datos = {
-            {"Jorge Paredes", "3.00 km"},
-            {"Juan Ortiz", "4.00 km"}
+    String[][] datos = {
+            {"", ""},
     };
+
+    double [][] localizaciones = {{,}};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +91,7 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
         setContentView(R.layout.activity_lista_solicitudes_paseador);
 
         mAuth = FirebaseAuth.getInstance();
-        database= FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
         user = mAuth.getCurrentUser();
 
         myRef = database.getReference(PATH_PASEADORES + user.getUid());
@@ -94,12 +102,16 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
         textoSolicitudes = (TextView) findViewById(R.id.textoSolicitudes);
 
         lv1 = (ListView) findViewById(R.id.lv1);
-        lv1.setAdapter(new Adaptador(this, datos));
 
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(view.getContext(), DetalleySolicitudPaseador.class);
+                Intent intent = new Intent(view.getContext(), MapaSolicitud.class);
+                //intent.putExtra("localizac",“value”);
+                Bundle bundle = new Bundle();
+                bundle.putDouble("lat", localizaciones[i][0]);
+                bundle.putDouble("lon", localizaciones[i][1]);
+                intent.putExtra("bundle",bundle);
                 startActivity(intent);
             }
         });
@@ -108,15 +120,14 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 myRef = database.getReference(PATH_PASEADORES + user.getUid());
-                if (switchD.isChecked()){
+                if (switchD.isChecked()) {
                     myRef.child("estado").setValue(true);
                     startLocationUpdates();
                     mostrarSolicitudes();
                     switchD.setText(getResources().getText(R.string.disponible));
 
                     switchD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
-                }
-                else {
+                } else {
                     myRef.child("estado").setValue(false);
                     stopLocationUpdates();
                     quitarSolicitudes();
@@ -162,7 +173,8 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                                         REQUEST_LOCATION);
                             } catch (IntentSender.SendIntentException sendEx) {
                                 // Ignore the error.
-                            } break;
+                            }
+                            break;
                         case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
                             // Location settings are not satisfied. No way to fix the settings so we won't show the dialog.
                             break;
@@ -178,7 +190,6 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                         mCurrentLocation = location;
                         double lat = location.getLatitude();
                         double lon = location.getLongitude();
-                        Log.i("TAG", "Localizacion " + lat + "   " + lon);
                         myRef.child("latitud").setValue(lat);
                         myRef.child("longitud").setValue(lon);
                     }
@@ -199,9 +210,70 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                     Log.i("TAG", "Localizacion " + lat + "   " + lon);
                     myRef.child("latitud").setValue(lat);
                     myRef.child("longitud").setValue(lon);
+                    loadUsers();
                 }
             }
         };
+    }
+
+    public void loadUsers() {
+        DatabaseReference mRootRef = database.getReference(PATH_PASEOS);
+        mRootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int size = 0;
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Paseo paseo = singleSnapshot.getValue(Paseo.class);
+                    String paseadoruid = paseo.getPaseadorUid();
+                    if (paseadoruid.equals(user.getUid())){
+                        Log.i("TAG", "Resultado " + "si");
+                        size ++;
+                    }
+                }
+                localizaciones = new double[size][2];
+                String[][] datos1 = new String [size][2];
+                int i = 0;
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Paseo paseo = singleSnapshot.getValue(Paseo.class);
+                    String paseadoruid = paseo.getPaseadorUid();
+                    if (paseadoruid.equals(user.getUid())){
+                        String name = paseo.getNombreMascota();
+                        String clienteuid = paseo.getClienteUid();
+
+                        Log.i("TAG", "A ver " + name);
+                        datos1[i][0] = name;
+                        DatabaseReference mRootRef1 = database.getReference(PATH_CLIENTES + clienteuid);
+                        mRootRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                lat2 = dataSnapshot.child("latitud").getValue(double.class);
+                                lon2 = dataSnapshot.child("longitud").getValue(double.class);
+                                double lat = mCurrentLocation.getLatitude();
+                                double lon = mCurrentLocation.getLongitude();
+                                distancia = distance(lat, lon, lat2, lon2);
+                            }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                            }
+                        });
+                        localizaciones [i][0] = lat2;
+                        localizaciones [i][1] = lon2;
+                        datos1[i][1] = Double.toString(distancia) + " km";
+
+                        i++;
+                    }
+                    
+                }
+                datos = datos1;
+                mostrarSolicitudes();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("TAG", "error en la consulta", databaseError.toException());
+            }
+        });
     }
 
     // Funcion actualizacion periodica
@@ -334,13 +406,20 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
     }
 
     private void quitarSolicitudes() {
+        String [][] datos = {
+                {"Jorge Paredes", "3.00 km"},
+                {"Juan Ortiz", "4.00 km"}
+        };
         textoSolicitudes.setText(R.string.peticion_estado);
         lv1.setAdapter(null);
     }
 
     private void mostrarSolicitudes() {
-        textoSolicitudes.setText(R.string.seleccione);
-        lv1.setAdapter(new Adaptador(contexto, datos));
+        if (switchD.isChecked()){
+            textoSolicitudes.setText(R.string.seleccione);
+            lv1.setAdapter(new Adaptador(contexto, datos));
+        }
+
     }
 
     @Override
@@ -361,5 +440,17 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Calcular distancia entre dos puntos
+    public double distance(double lat1, double long1, double lat2, double long2) {
+        double latDistance = Math.toRadians(lat1 - lat2);
+        double lngDistance = Math.toRadians(long1 - long2);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double result = RADIUS_OF_EARTH_KM * c;
+        return Math.round(result*100.0)/100.0;
     }
 }

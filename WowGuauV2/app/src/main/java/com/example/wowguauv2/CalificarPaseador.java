@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class CalificarPaseador extends AppCompatActivity {
@@ -86,7 +84,6 @@ public class CalificarPaseador extends AppCompatActivity {
                 cargarDetalle(listvPaseos.getItemAtPosition(i).toString());
                 if(!edttCalificar.getText().toString().isEmpty()){
                     Query q = database.getReference(PATH_PASEADOR).orderByChild("correo").equalTo(paseador.getCorreo());
-
                 }
 
             }
@@ -112,7 +109,7 @@ public class CalificarPaseador extends AppCompatActivity {
 
 
                 for(Paseo pa : paseos){
-                    if(pa.getPaseadorCorreo().equals(p.getCorreo())){
+                    if(pa.getPaseadorUid().equals(p.getCorreo())){
                         txtvNombreMascota.setText(pa.getNombreMascota());
                         txtvFechaPaseo.setText(pa.getInicio().toString());
 
@@ -157,7 +154,7 @@ public class CalificarPaseador extends AppCompatActivity {
                     Paseo p = dsh.getValue(Paseo.class);
                     if(!p.isCalificado()&&!p.isActivo()&&p.isAceptado()){
                         paseos.add(p);
-                        Query q2 = database.getReference(PATH_PASEADOR).orderByChild("correo").equalTo(p.getPaseadorCorreo());
+                        Query q2 = database.getReference(PATH_PASEADOR).orderByChild("correo").equalTo(p.getPaseadorUid());
                         q2.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

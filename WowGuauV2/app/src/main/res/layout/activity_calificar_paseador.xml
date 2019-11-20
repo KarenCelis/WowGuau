@@ -22,7 +22,7 @@
                 android:gravity="center"
                 android:text="Paseadores Anteriores"
                 android:textColor="#4CAF50"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <ListView
                 android:id="@+id/listvPaseos"
@@ -100,7 +100,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Calificar" />
+                    android:text="Calificar"
+                    android:background="@drawable/button_rounded"
+                    android:textColor="#ffffff"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

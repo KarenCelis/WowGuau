@@ -20,11 +20,12 @@
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:text="Registro Peludo"
-                android:textSize="18sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -65,11 +66,31 @@
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/perrogenerico2" />
 
+            <TextView
+                android:id="@+id/editText3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Seleccione la raza de su peludo"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
             <Spinner
                 android:id="@+id/spinnerRaza"
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:entries="@array/razas" />
+
+            <TextView
+                android:id="@+id/editText4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Seleccione la raza de su peludo"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Spinner
                 android:id="@+id/spinnerTamano"
@@ -98,7 +119,9 @@
                 android:id="@+id/btnRegistrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Agregar Mascota" />
+                android:text="Agregar Mascota"
+                android:background="@drawable/button_rounded"
+                android:textColor="#ffffff"/>
         </LinearLayout>
     </ScrollView>
 
