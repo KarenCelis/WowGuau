@@ -105,19 +105,19 @@ public class RegistrarMascota extends AppCompatActivity {
                 if(verificarCampos()){
                     myRef = database.getReference(MASCOTAS_PATH);
                     String key = myRef.push().getKey();
+                    myRef = database.getReference(MASCOTAS_PATH+key);
                     Mascota mascota = obtenerMascota();
                     mStorageRef.child(MASCOTAS_PATH + key + "/img").putFile(profile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Log.i("i", "onSuccess: Fotocargada");
+                            Log.i("imagen", "onSuccess: Fotocargada");
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.i("i","onFalure: CargarFoto");
+                            Log.i("imagen","onFalure: CargarFoto");
                         }
                     });
-
                     mascota.setPathFoto(MASCOTAS_PATH + key + "/img");
                     myRef.setValue(mascota).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -125,31 +125,23 @@ public class RegistrarMascota extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Mascota agregada correctamente",Toast.LENGTH_LONG).show();
                         }
                     });
-                    startActivity(new Intent(getApplicationContext(),ListaMascotas.class));
+                    Intent i =  new Intent(getApplicationContext(),PPrincipalCliente.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
                 }
             }
         });
     }
 
     public Mascota obtenerMascota(){
-        String nombre, raza, recomendaciones, duenoUid,pathFoto;
+        String nombre, raza, recomendaciones, duenoUid,pathFoto,tam;
         int edad;
-        Mascota.Size tam=null;
+
 
         nombre = edtxtNombre.getText().toString();
         recomendaciones = edttxtRecomendaciones.getText().toString();
         raza = spinnerRaza.getSelectedItem().toString();
-        switch (spinnerTam.getSelectedItemPosition()){
-            case 1: tam = Mascota.Size.XSmall;
-                break;
-            case 2: tam = Mascota.Size.Small;
-                break;
-            case 3: tam = Mascota.Size.Medium;
-                break;
-            case 4: tam = Mascota.Size.Large;
-                break;
-            case 5: tam = Mascota.Size.XLarge;
-        }
+        tam = spinnerTam.getSelectedItem().toString();
         edad = Integer.parseInt(edttxtEdad.getText().toString());
         duenoUid = user.getUid();
         return  new Mascota(nombre,raza,edad,tam,duenoUid,"",recomendaciones);
