@@ -108,8 +108,9 @@ public class ListaPaseadoresUbicacion extends AppCompatActivity {
                     Double longPasead = paseador.getLongitud();
                     distClientPas = distance(latPasead,longPasead, latDireccion, longDireccion);
 
+                        Log.d("koko", "no miro: " + paseador.getNombre() + "-->" + distance(latPasead,longPasead, latDireccion, longDireccion));
                     if( distClientPas <= 5.0 && paseador.isEstado()){
-
+                        Log.d("koko", "entre: " + paseador.getNombre() + "-->" + distance(latPasead,longPasead, latDireccion, longDireccion));
                         paseadorUb.add(paseador);
                         nombPaseador.add(paseador.getNombre());
                     }
