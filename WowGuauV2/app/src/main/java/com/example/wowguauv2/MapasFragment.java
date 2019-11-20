@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,9 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private double lat2;
+    private double lon2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -85,6 +89,11 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
 
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Bundle bundle = this.getArguments();
+        lat2 = bundle.getDouble("lat");
+        lon2 = bundle.getDouble("lon");
+        Log.i("TAG", "Localizacion " + lat2 + "   " + lon2);
 
         return v;
     }
@@ -176,6 +185,10 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
                     LatLng miPosicion = new LatLng(latitudOrigen, longitudOrigen);
 
                     map.addMarker(new MarkerOptions().position(miPosicion).title("Aqui estoy yo"));
+
+                    LatLng posicionDestion = new LatLng(lat2, lon2);
+
+                    map.addMarker(new MarkerOptions().position(posicionDestion).title("Domicilio Solicitud"));
 
                     CameraPosition cameraPosition = new CameraPosition.Builder()
                             .target(new LatLng(latitudOrigen, longitudOrigen))
