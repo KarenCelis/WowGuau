@@ -221,7 +221,6 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Paseo paseo = singleSnapshot.getValue(Paseo.class);
                     String paseadoruid = paseo.getPaseadorUid();
-                    Log.i("TAG", "Localizacion " + paseadoruid + "   " + user.getUid());
                     if (paseadoruid.equals(user.getUid())){
                         Log.i("TAG", "Resultado " + "si");
                         size ++;
@@ -231,10 +230,12 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                 String[][] datos1 = new String [size][2];
                 int i = 0;
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                    if (i < size){
-                        Paseo paseo = singleSnapshot.getValue(Paseo.class);
+                    Paseo paseo = singleSnapshot.getValue(Paseo.class);
+                    String paseadoruid = paseo.getPaseadorUid();
+                    if (paseadoruid.equals(user.getUid())){
                         String name = paseo.getNombreMascota();
                         String clienteuid = paseo.getClienteUid();
+
                         Log.i("TAG", "A ver " + name);
                         datos1[i][0] = name;
                         DatabaseReference mRootRef1 = database.getReference(PATH_CLIENTES + clienteuid);
@@ -252,8 +253,10 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                             }
                         });
                         datos1[i][1] = Double.toString(distancia) + " km";
+
+                        i++;
                     }
-                    i++;
+                    
                 }
                 datos = datos1;
                 mostrarSolicitudes();
