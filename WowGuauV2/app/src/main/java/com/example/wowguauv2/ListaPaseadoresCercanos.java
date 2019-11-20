@@ -86,11 +86,11 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
             mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
-                    Log.i("LOCATION","OnSuccess");
-                    if(location != null) {
+                    Log.i("LOCATION", "OnSuccess");
+                    if (location != null) {
                         miLatitud = location.getLatitude();
                         miLonguitud = location.getLongitude();
-                        loadUsers(myRef,distPaseador, miLatitud, miLonguitud,list_paseador);
+                        loadUsers(myRef, distPaseador, miLatitud, miLonguitud, list_paseador);
                     }
                 }
             });
@@ -105,17 +105,18 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
 
-                    int statusCode = ((ApiException)e).getStatusCode();
-                    switch (statusCode){
+                    int statusCode = ((ApiException) e).getStatusCode();
+                    switch (statusCode) {
                         case CommonStatusCodes.RESOLUTION_REQUIRED:
-                            try{
+                            try {
 
                                 ResolvableApiException resolvable = (ResolvableApiException) e;
                                 resolvable.startResolutionForResult(ListaPaseadoresCercanos.this, REQUEST_CHECK_SETTINGS);
 
-                            }catch (IntentSender.SendIntentException sendEx){
+                            } catch (IntentSender.SendIntentException sendEx) {
 
-                            }break;
+                            }
+                            break;
                         case LocationSettingsStatusCodes
                                 .SETTINGS_CHANGE_UNAVAILABLE:
                             break;
@@ -135,7 +136,7 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
         return mLocationRequest;
     }
 
-    public void loadUsers(DatabaseReference myRef, final ArrayList distPaseador, final double miLatitud, final double miLonguitud,final ListView list_paseador) {
+    public void loadUsers(DatabaseReference myRef, final ArrayList distPaseador, final double miLatitud, final double miLonguitud, final ListView list_paseador) {
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -145,11 +146,14 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
                 final String nombre = paseador.getNombre();
                 double lat2 = paseador.getLatitud();
                 double long2 = paseador.getLongitud();
+                Log.d("koko", "onChildAdded: " + nombre + "-->" + distance(lat2, long2, miLatitud, miLonguitud));
+                if (distance(lat2, long2, miLatitud, miLonguitud) <= 5.0) {
+                    Log.d("koko", "entre: " + nombre + "-->" + distance(lat2, long2, miLatitud, miLonguitud));
 
-                if(distance(lat2,long2, miLatitud,miLonguitud) <= 5.0){
+                    distPaseador.add(nombre);
+                    Log.d("koko", "entre2: " + nombre + "-->" + distance(lat2, long2, miLatitud, miLonguitud));
 
-                        distPaseador.add(nombre);
-                        adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -178,7 +182,7 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 // Show an expanation to the user *asynchronouslyÂ  Â
-            //    Toast.makeText(this, "Se necesita el permiso para ver los paseadores!", Toast.LENGTH_LONG).show();
+                //    Toast.makeText(this, "Se necesita el permiso para ver los paseadores!", Toast.LENGTH_LONG).show();
             }
             // Request the permission.
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION);
@@ -194,27 +198,27 @@ public class ListaPaseadoresCercanos extends AppCompatActivity {
                 * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double result = RADIUS_OF_EARTH_KM * c;
-        return Math.round(result*100.0)/100.0;
+        return Math.round(result * 100.0) / 100.0;
     }
 
-    private void startLocationUpdates(){
+    private void startLocationUpdates() {
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-            mFusedLocation.requestLocationUpdates(mLocationRequest,mLocationCallback,null);
+            mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
         }
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        switch (requestCode){
+        switch (requestCode) {
 
-            case REQUEST_CHECK_SETTINGS:{
+            case REQUEST_CHECK_SETTINGS: {
 
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     startLocationUpdates();
-                }else{
-                    Toast.makeText(this,"Sin acceso a localización, harware deshabilitado", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "Sin acceso a localización, harware deshabilitado", Toast.LENGTH_LONG).show();
 
                 }
                 return;

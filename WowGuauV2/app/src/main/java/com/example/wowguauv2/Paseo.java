@@ -98,4 +98,20 @@ public class Paseo implements Serializable {
     public void setFin(Date fin) {
         this.fin = fin;
     }
+
+    @Override
+    public String toString() {
+        return "Paseo{" +
+                "calificado=" + calificado +
+                ", aceptado=" + aceptado +
+                ", activo=" + activo +
+                ", clienteUid='" + clienteUid + '\'' +
+                ", paseadorUid='" + paseadorUid + '\'' +
+                ", nombreMascota='" + nombreMascota + '\'' +
+                ", latPaseador=" + latPaseador +
+                ", longPaseador=" + longPaseador +
+                ", inicio=" + inicio +
+                ", fin=" + fin +
+                '}';
+    }
 }
