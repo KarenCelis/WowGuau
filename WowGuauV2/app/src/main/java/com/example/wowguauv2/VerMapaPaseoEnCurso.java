@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -63,9 +64,9 @@ public class VerMapaPaseoEnCurso extends FragmentActivity implements OnMapReadyC
 
                     LatLng walker = new LatLng(lati, longi);
                     oldmark.remove();
-                    newmark = mMap.addMarker(new MarkerOptions().position(walker).title("Paseador"));
+                    newmark = mMap.addMarker(new MarkerOptions().position(walker).title("Paseador").icon(BitmapDescriptorFactory.fromResource(R.drawable.placewalker2)));
                     oldmark = newmark;
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(walker));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(walker,19));
                 //}
             }
 
@@ -93,6 +94,6 @@ public class VerMapaPaseoEnCurso extends FragmentActivity implements OnMapReadyC
         // Add a marker in Sydney and move the camera
         LatLng bog = new LatLng(4, -74);
         oldmark = mMap.addMarker(new MarkerOptions().position(bog).title("Bog"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(bog));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bog,19));
     }
 }
