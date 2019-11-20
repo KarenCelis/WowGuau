@@ -37,7 +37,6 @@ public class ListaMascotas extends AppCompatActivity {
 
     ArrayList<Mascota> mascotas;
     List<String> mascotasNombres;
-    String[] mascotasNA;
 
 
     @Override

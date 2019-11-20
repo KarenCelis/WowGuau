@@ -12,6 +12,7 @@ public class Usuario implements Serializable {
     private Double longitud;
     private String pathFoto;
     private String tipo;
+    private String Uid;
 
     public Usuario() {
     }
@@ -25,6 +26,14 @@ public class Usuario implements Serializable {
         this.longitud = longitud;
         this.pathFoto = pathFoto;
         this.tipo = tipo;
+    }
+
+    public String getUid() {
+        return Uid;
+    }
+
+    public void setUid(String uid) {
+        Uid = uid;
     }
 
     public String getNombre() {

@@ -9,7 +9,7 @@ public class Paseo implements Serializable {
     private boolean aceptado;
     private boolean activo;
     private String clienteUid;
-    private String paseadorCorreo;
+    private String paseadorUid;
     private String nombreMascota;
     private double latPaseador;
     private double longPaseador;
@@ -51,12 +51,12 @@ public class Paseo implements Serializable {
         this.clienteUid = clienteUid;
     }
 
-    public String getPaseadorCorreo() {
-        return paseadorCorreo;
+    public String getPaseadorUid() {
+        return paseadorUid;
     }
 
-    public void setPaseadorCorreo(String paseadorCorreo) {
-        this.paseadorCorreo = paseadorCorreo;
+    public void setPaseadorUid(String paseadorUid) {
+        this.paseadorUid = paseadorUid;
     }
 
     public String getNombreMascota() {
