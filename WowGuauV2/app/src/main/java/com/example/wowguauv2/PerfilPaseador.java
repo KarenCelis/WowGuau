@@ -105,7 +105,7 @@ public class PerfilPaseador extends AppCompatActivity {
         Paseo paseo = new Paseo();
         paseo.setCalificado(false);
         paseo.setAceptado(false);
-        paseo.setActivo(false);
+        paseo.setActivo(true);
         paseo.setClienteUid(user.getUid());
         paseo.setPaseadorCorreo(p.getCorreo());
         paseo.setNombreMascota(spinnerMascotas.getSelectedItem().toString());

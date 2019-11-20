@@ -28,11 +28,11 @@ Boolean existenPaseos=true;
         listaP=findViewById(R.id.ListaPaseadores);
         paseoCurso=findViewById(R.id.CerrarSesion);
         listaPUbicacion = findViewById(R.id.btnPaseadorUbicacion);
-if(!existenPaseos){
+        if(!existenPaseos){
 
-    paseoCurso.setEnabled(false);
+            paseoCurso.setEnabled(false);
 
-}
+        }
         registrarM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,8 +57,6 @@ if(!existenPaseos){
         paseoCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth fAuth = FirebaseAuth.getInstance();
-                fAuth.signOut();
                 startActivity(new Intent(getApplicationContext(),PaseoEnCursoC.class));
             }
         });
