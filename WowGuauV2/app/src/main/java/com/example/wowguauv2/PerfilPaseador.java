@@ -76,7 +76,7 @@ public class PerfilPaseador extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombre);
         txtExperiencia = findViewById(R.id.txtExperiencia);
         txtAniosExp = findViewById(R.id.txtAniosExp);
-        txtDistancia = findViewById(R.id.txtCalificacion);
+        txtDistancia = findViewById(R.id.txtDistancia);
         txtCalificacion = findViewById(R.id.txtCalificacion);
         btnSolicitarPaseo = findViewById(R.id.btnSolicitarPaseo);
         spinnerMascotas = findViewById(R.id.spinnerMascotas);
