@@ -83,6 +83,8 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
             {"", ""},
     };
 
+    double [][] localizaciones = {{,}};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +106,12 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(view.getContext(), DetalleySolicitudPaseador.class);
+                Intent intent = new Intent(view.getContext(), MapaSolicitud.class);
+                //intent.putExtra("localizac",“value”);
+                Bundle bundle = new Bundle();
+                bundle.putDouble("lat", localizaciones[i][0]);
+                bundle.putDouble("lon", localizaciones[i][1]);
+                intent.putExtra("bundle",bundle);
                 startActivity(intent);
             }
         });
@@ -183,7 +190,6 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                         mCurrentLocation = location;
                         double lat = location.getLatitude();
                         double lon = location.getLongitude();
-                        Log.i("TAG", "Localizacion " + lat + "   " + lon);
                         myRef.child("latitud").setValue(lat);
                         myRef.child("longitud").setValue(lon);
                     }
@@ -226,7 +232,7 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                         size ++;
                     }
                 }
-                Log.i("TAG", "TAM " + size);
+                localizaciones = new double[size][2];
                 String[][] datos1 = new String [size][2];
                 int i = 0;
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
@@ -252,6 +258,8 @@ public class ListaSolicitudesPaseador extends AppCompatActivity {
                             public void onCancelled(DatabaseError databaseError) {
                             }
                         });
+                        localizaciones [i][0] = lat2;
+                        localizaciones [i][1] = lon2;
                         datos1[i][1] = Double.toString(distancia) + " km";
 
                         i++;

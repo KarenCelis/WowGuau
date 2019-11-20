@@ -13,7 +13,7 @@
     <string name="menu_paseador">Menú Principal</string>
     <string name="estado">Tu Estado</string>
     <string name="seleccione">Seleccione el cliente</string>
-     <string name="peticion_estado">Para ver las solicitudes active su estado</string>
+    <string name="peticion_estado">Para ver las solicitudes active su estado</string>
     <string name="detalles">Detalles</string>
     <string name="cliente">Cliente</string>
     <string name="mascotas">Mascotas</string>
@@ -90,4 +90,7 @@
     </string-array>
     <string name="title_activity_ver_mapa_en_curso">Map</string>
     <string name="title_activity_ver_mapa_paseo_en_curso">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
