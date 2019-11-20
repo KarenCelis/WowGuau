@@ -85,7 +85,6 @@ public class CalificarPaseador extends AppCompatActivity {
 
         loadPaseos();
         mostrarDetalle();
-        //ocultarDetalle();
 
         listvPaseos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
